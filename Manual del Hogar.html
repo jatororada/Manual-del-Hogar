@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manual del Hogar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f4efe6;
+  --bg2:#ece4d6;
+  --card:#fffaf2;
+  --ink:#2b2620;
+  --ink-soft:#6f655a;
+  --line:#e2d8c8;
+  --terracotta:#c5683f;
+  --terracotta-d:#a8542f;
+  --olive:#5f7355;
+  --olive-d:#4a5b42;
+  --teal:#357066;
+  --gold:#c79a3e;
+  --rose:#b8504f;
+  --rose-bg:#f6e3df;
+  --olive-bg:#e6ebe0;
+  --teal-bg:#ddeeea;
+  --gold-bg:#f6ecd4;
+  --blue-bg:#e0e8ee;
+  --blue:#3f6079;
+  --radius:18px;
+  --shadow:0 1px 2px rgba(60,45,30,.04),0 8px 24px rgba(80,60,35,.08);
+  --shadow-lg:0 10px 40px rgba(80,60,35,.14);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Outfit',sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  background-image:radial-gradient(circle at 12% 18%,rgba(197,104,63,.05),transparent 40%),radial-gradient(circle at 88% 8%,rgba(95,115,85,.06),transparent 38%);
+  background-attachment:fixed;
+  padding-bottom:90px;
+}
+h1,h2,h3,.serif{font-family:'Fraunces',serif}
+
+/* ---------- HEADER ---------- */
+header{
+  padding:34px 22px 26px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+header .eyebrow{
+  font-size:.72rem;letter-spacing:.32em;text-transform:uppercase;
+  color:var(--terracotta);font-weight:600;margin-bottom:10px;
+}
+header h1{
+  font-size:clamp(2rem,7vw,3.1rem);font-weight:700;line-height:1.04;
+  color:var(--ink);letter-spacing:-.01em;
+}
+header h1 em{font-style:italic;color:var(--terracotta)}
+header p.sub{
+  margin-top:12px;color:var(--ink-soft);font-size:.96rem;max-width:520px;
+  margin-left:auto;margin-right:auto;
+}
+.crest{
+  width:46px;height:46px;margin:0 auto 14px;border-radius:50%;
+  background:linear-gradient(135deg,var(--terracotta),var(--gold));
+  display:grid;place-items:center;box-shadow:var(--shadow);
+  font-family:'Fraunces',serif;color:#fff;font-size:1.5rem;font-weight:600;
+}
+
+/* ---------- PROGRESS RIBBON ---------- */
+.today-card{
+  max-width:680px;margin:6px auto 0;background:var(--card);
+  border:1px solid var(--line);border-radius:var(--radius);
+  box-shadow:var(--shadow);padding:18px 20px;
+  display:flex;align-items:center;gap:16px;
+}
+.today-card .ring{flex:0 0 auto}
+.today-card .info{flex:1;min-width:0}
+.today-card .info .label{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft)}
+.today-card .info .day{font-family:'Fraunces',serif;font-size:1.3rem;font-weight:600;color:var(--ink);line-height:1.15}
+.today-card .info .task{font-size:.86rem;color:var(--ink-soft);margin-top:2px}
+.mini-btn{
+  background:var(--olive);color:#fff;border:none;border-radius:10px;
+  padding:9px 14px;font-family:inherit;font-size:.8rem;font-weight:600;
+  cursor:pointer;white-space:nowrap;transition:.2s;
+}
+.mini-btn:hover{background:var(--olive-d)}
+
+/* ---------- NAV TABS ---------- */
+nav.tabs{
+  position:sticky;top:0;z-index:50;background:rgba(244,239,230,.86);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--line);
+  margin-top:24px;
+}
+nav.tabs .inner{
+  max-width:920px;margin:0 auto;display:flex;gap:4px;overflow-x:auto;
+  padding:8px 12px;scrollbar-width:none;
+}
+nav.tabs .inner::-webkit-scrollbar{display:none}
+.tab{
+  flex:0 0 auto;border:none;background:transparent;font-family:inherit;
+  font-size:.84rem;font-weight:500;color:var(--ink-soft);
+  padding:9px 14px;border-radius:11px;cursor:pointer;transition:.18s;
+  display:flex;align-items:center;gap:7px;white-space:nowrap;
+}
+.tab .ic{font-size:1rem}
+.tab:hover{background:var(--bg2);color:var(--ink)}
+.tab.active{background:var(--ink);color:var(--bg)}
+
+/* ---------- LAYOUT ---------- */
+main{max-width:920px;margin:0 auto;padding:28px 18px 40px}
+.panel{display:none;animation:fade .4s ease}
+.panel.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.section-head{margin-bottom:18px}
+.section-head h2{font-size:1.7rem;font-weight:700;letter-spacing:-.01em}
+.section-head p{color:var(--ink-soft);font-size:.94rem;margin-top:4px;max-width:640px}
+
+/* ---------- CARDS ---------- */
+.card{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  box-shadow:var(--shadow);padding:20px 22px;margin-bottom:16px;
+}
+.card h3{font-size:1.18rem;font-weight:600;margin-bottom:4px;display:flex;align-items:center;gap:9px}
+.card h3 .dot{width:9px;height:9px;border-radius:50%;background:var(--terracotta);flex:0 0 auto}
+.card .meta{font-size:.78rem;color:var(--ink-soft);margin-bottom:12px}
+
+/* accordion */
+.acc{border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:10px;background:var(--card)}
+.acc>summary{
+  list-style:none;cursor:pointer;padding:15px 18px;font-weight:600;font-size:1rem;
+  display:flex;align-items:center;gap:11px;transition:.15s;
+}
+.acc>summary::-webkit-details-marker{display:none}
+.acc>summary .chev{margin-left:auto;transition:.25s;color:var(--ink-soft);font-size:.9rem}
+.acc[open]>summary .chev{transform:rotate(90deg)}
+.acc>summary .emoji{font-size:1.2rem}
+.acc>summary:hover{background:var(--bg2)}
+.acc .body{padding:2px 18px 18px;border-top:1px solid var(--line)}
+.acc .body p{margin:10px 0;font-size:.92rem;color:var(--ink)}
+
+/* callouts */
+.callout{border-radius:14px;padding:14px 16px;margin:12px 0;border-left:5px solid;font-size:.9rem}
+.callout .ct{font-weight:600;display:block;margin-bottom:4px;font-size:.92rem}
+.callout.warn{background:var(--rose-bg);border-color:var(--rose)}
+.callout.warn .ct{color:var(--rose)}
+.callout.tip{background:var(--teal-bg);border-color:var(--teal)}
+.callout.tip .ct{color:var(--teal)}
+.callout.note{background:var(--blue-bg);border-color:var(--blue)}
+.callout.note .ct{color:var(--blue)}
+.callout.gold{background:var(--gold-bg);border-color:var(--gold)}
+.callout.gold .ct{color:var(--terracotta-d)}
+.callout ul{margin:6px 0 0 18px}
+.callout li{margin:4px 0}
+
+/* lists */
+.steps{counter-reset:s;list-style:none;margin:8px 0}
+.steps li{counter-increment:s;position:relative;padding:6px 0 6px 38px;font-size:.92rem}
+.steps li::before{
+  content:counter(s);position:absolute;left:0;top:5px;width:25px;height:25px;
+  background:var(--olive-bg);color:var(--olive-d);border-radius:50%;
+  display:grid;place-items:center;font-size:.78rem;font-weight:700;font-family:'Outfit'
+}
+ul.dotted{list-style:none;margin:6px 0}
+ul.dotted li{position:relative;padding:4px 0 4px 18px;font-size:.92rem}
+ul.dotted li::before{content:"";position:absolute;left:2px;top:13px;width:6px;height:6px;border-radius:50%;background:var(--terracotta)}
+
+/* tables */
+.tbl{width:100%;border-collapse:collapse;font-size:.86rem;margin:8px 0;overflow:hidden;border-radius:12px}
+.tbl th{background:var(--ink);color:var(--bg);text-align:left;padding:9px 12px;font-weight:600;font-size:.8rem}
+.tbl td{padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+.tbl tr:nth-child(even) td{background:rgba(236,228,214,.4)}
+.tbl .yes{color:var(--olive-d);font-weight:600}
+.tbl .no{color:var(--rose);font-weight:600}
+
+/* pills */
+.pill{display:inline-block;font-size:.68rem;font-weight:700;letter-spacing:.04em;padding:2px 9px;border-radius:20px;color:#fff;text-transform:uppercase}
+.pill.alta{background:var(--rose)}
+.pill.media{background:var(--gold)}
+.pill.baja{background:var(--teal)}
+
+/* checklist */
+.chk{list-style:none}
+.chk li{
+  display:flex;align-items:flex-start;gap:11px;padding:10px 12px;border-radius:11px;
+  cursor:pointer;transition:.15s;font-size:.92rem;border:1px solid transparent;
+}
+.chk li:hover{background:var(--bg2)}
+.chk li .box{
+  flex:0 0 auto;width:21px;height:21px;border-radius:6px;border:2px solid var(--line);
+  margin-top:1px;display:grid;place-items:center;transition:.18s;background:var(--card)
+}
+.chk li.done .box{background:var(--olive);border-color:var(--olive)}
+.chk li .box svg{width:12px;height:12px;stroke:#fff;stroke-width:3;fill:none;opacity:0;transition:.18s}
+.chk li.done .box svg{opacity:1}
+.chk li.done span.txt{text-decoration:line-through;color:var(--ink-soft)}
+
+.barwrap{height:8px;background:var(--bg2);border-radius:10px;overflow:hidden;margin:6px 0 2px}
+.bar{height:100%;background:linear-gradient(90deg,var(--olive),var(--teal));width:0;transition:.4s;border-radius:10px}
+
+/* daily day cards */
+.daygrid{display:grid;gap:12px}
+.daycard{
+  background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;
+  box-shadow:var(--shadow);transition:.2s
+}
+.daycard.is-today{border-color:var(--terracotta);box-shadow:0 0 0 2px rgba(197,104,63,.18),var(--shadow)}
+.daycard summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:14px;padding:15px 18px}
+.daycard summary::-webkit-details-marker{display:none}
+.daycard .dnum{
+  flex:0 0 auto;width:42px;height:42px;border-radius:12px;display:grid;place-items:center;
+  font-family:'Fraunces',serif;font-weight:600;font-size:.95rem;background:var(--olive-bg);color:var(--olive-d)
+}
+.daycard.is-today .dnum{background:var(--terracotta);color:#fff}
+.daycard .dtitle{font-family:'Fraunces',serif;font-weight:600;font-size:1.08rem}
+.daycard .dfocus{font-size:.8rem;color:var(--ink-soft)}
+.daycard .badge-today{margin-left:auto;font-size:.66rem;font-weight:700;letter-spacing:.1em;color:var(--terracotta);text-transform:uppercase}
+.daycard .chev{margin-left:auto;color:var(--ink-soft);transition:.25s}
+.daycard.is-today .chev{margin-left:8px}
+.daycard[open] .chev{transform:rotate(90deg)}
+.daycard .dbody{padding:0 18px 14px}
+
+/* saturday wheel */
+.satwheel{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:8px}
+.satchip{
+  background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;cursor:pointer;
+  box-shadow:var(--shadow);transition:.2s;text-align:left;font-family:inherit;position:relative;overflow:hidden
+}
+.satchip:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg)}
+.satchip.active{border-color:var(--terracotta);background:linear-gradient(180deg,var(--gold-bg),var(--card))}
+.satchip .sn{font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--terracotta);font-weight:700}
+.satchip .st{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:600;margin-top:3px;line-height:1.2}
+.satchip .stime{font-size:.78rem;color:var(--ink-soft);margin-top:6px}
+.satchip .nowtag{position:absolute;top:10px;right:10px;font-size:.6rem;font-weight:700;background:var(--terracotta);color:#fff;padding:2px 7px;border-radius:10px;letter-spacing:.06em}
+
+/* timer */
+.timer{display:flex;align-items:center;gap:12px;background:var(--ink);color:var(--bg);border-radius:14px;padding:12px 16px;margin:10px 0}
+.timer .tdisp{font-family:'Fraunces',serif;font-size:1.5rem;font-weight:600;font-variant-numeric:tabular-nums;min-width:78px}
+.timer button{background:rgba(255,255,255,.14);border:none;color:var(--bg);font-family:inherit;font-weight:600;font-size:.8rem;padding:7px 12px;border-radius:9px;cursor:pointer;transition:.15s}
+.timer button:hover{background:rgba(255,255,255,.26)}
+.timer .tlabel{font-size:.78rem;opacity:.8;margin-left:auto}
+
+/* supplies grid */
+.supgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:10px 0}
+.supitem{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:13px}
+.supitem .sname{font-weight:600;font-size:.92rem;display:flex;align-items:center;gap:7px}
+.supitem .suse{font-size:.8rem;color:var(--ink-soft);margin-top:3px}
+.supitem .stag{display:inline-block;margin-top:7px;font-size:.66rem;font-weight:700;padding:2px 8px;border-radius:10px}
+.stag.premium{background:var(--gold-bg);color:var(--terracotta-d)}
+.stag.basic{background:var(--olive-bg);color:var(--olive-d)}
+
+/* etiquetas en línea: eco / gato */
+.tag{display:inline-flex;align-items:center;gap:4px;font-size:.66rem;font-weight:700;padding:2px 8px;border-radius:20px;letter-spacing:.02em;white-space:nowrap;vertical-align:middle}
+.tag.eco{background:var(--olive-bg);color:var(--olive-d)}
+.tag.catok{background:var(--teal-bg);color:var(--teal)}
+.tag.catno{background:var(--rose-bg);color:var(--rose)}
+.tag.diy{background:var(--gold-bg);color:var(--terracotta-d)}
+.recipe{background:rgba(236,228,214,.5);border:1px dashed var(--line);border-radius:12px;padding:12px 14px;margin:10px 0;font-size:.88rem}
+.recipe b{color:var(--terracotta-d)}
+.zsub{font-weight:600;font-size:.98rem;margin:14px 0 4px;color:var(--ink);display:flex;align-items:center;gap:7px}
+.zsub .zi{font-size:1.05rem}
+.freq{font-size:.8rem;color:var(--ink-soft);font-style:italic;margin:2px 0 8px}
+
+/* reset btn */
+.reset{display:block;margin:10px auto 0;background:transparent;border:1px solid var(--line);color:var(--ink-soft);font-family:inherit;font-size:.78rem;padding:7px 14px;border-radius:9px;cursor:pointer;transition:.15s}
+.reset:hover{border-color:var(--rose);color:var(--rose)}
+
+footer{text-align:center;color:var(--ink-soft);font-size:.78rem;padding:24px 18px 8px}
+
+/* bottom dock (mobile quick) */
+.dock{
+  position:fixed;bottom:14px;left:50%;transform:translateX(-50%);
+  background:var(--ink);border-radius:30px;padding:6px;display:flex;gap:2px;
+  box-shadow:var(--shadow-lg);z-index:60
+}
+.dock button{
+  background:transparent;border:none;color:rgba(244,239,230,.6);font-family:inherit;
+  font-size:.7rem;font-weight:600;padding:8px 14px;border-radius:24px;cursor:pointer;
+  display:flex;flex-direction:column;align-items:center;gap:2px;transition:.15s
+}
+.dock button .di{font-size:1.05rem}
+.dock button.active,.dock button:hover{color:var(--bg);background:rgba(255,255,255,.12)}
+
+@media(max-width:560px){
+  .satwheel{grid-template-columns:1fr 1fr}
+  .today-card{flex-direction:column;text-align:center}
+  .card{padding:16px 16px}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="crest serif">C</div>
+  <div class="eyebrow">Manual del hogar</div>
+  <h1>Una casa que <em>nunca</em> llega a ensuciarse</h1>
+  <p class="sub">Sistema realista y sostenible para una persona ocupada · 20 minutos al día · sábados profundos rotativos</p>
+
+  <div class="today-card" id="todayCard">
+    <div class="ring">
+      <svg width="62" height="62" viewBox="0 0 62 62">
+        <circle cx="31" cy="31" r="26" fill="none" stroke="#e2d8c8" stroke-width="7"/>
+        <circle id="todayRing" cx="31" cy="31" r="26" fill="none" stroke="#5f7355" stroke-width="7"
+          stroke-linecap="round" stroke-dasharray="163.4" stroke-dashoffset="163.4"
+          transform="rotate(-90 31 31)" style="transition:.5s"/>
+        <text id="todayPct" x="31" y="36" text-anchor="middle" font-family="Fraunces" font-size="15" font-weight="600" fill="#2b2620">0%</text>
+      </svg>
+    </div>
+    <div class="info">
+      <div class="label">Hoy es</div>
+      <div class="day" id="todayName">—</div>
+      <div class="task" id="todayTask">Cargando tu plan del día…</div>
+    </div>
+    <button class="mini-btn" onclick="go('diaria')">Ver hoy →</button>
+  </div>
+</header>
+
+<nav class="tabs">
+  <div class="inner" id="tabRow">
+    <button class="tab active" data-p="inicio"><span class="ic">🏡</span>Inicio</button>
+    <button class="tab" data-p="diaria"><span class="ic">⏱️</span>Día a día</button>
+    <button class="tab" data-p="sabados"><span class="ic">🧽</span>Sábados</button>
+    <button class="tab" data-p="zonas"><span class="ic">📍</span>Por zonas</button>
+    <button class="tab" data-p="productos"><span class="ic">🧴</span>Productos</button>
+    <button class="tab" data-p="bogota"><span class="ic">📍</span>Bogotá</button>
+    <button class="tab" data-p="orden"><span class="ic">📦</span>Orden</button>
+  </div>
+</nav>
+
+<main>
+
+<!-- ============ INICIO ============ -->
+<section class="panel active" id="inicio">
+  <div class="section-head">
+    <h2 class="serif">El sistema, en una idea</h2>
+    <p>La constancia vence al esfuerzo. No se trata de jornadas heroicas, sino de pequeños gestos diarios que evitan que la suciedad se acumule.</p>
+  </div>
+
+  <div class="callout tip">
+    <span class="ct">🌿 La filosofía en una frase</span>
+    Limpiar poco y seguido es infinitamente más fácil que limpiar mucho de vez en cuando. El objetivo no es una casa perfecta, sino una casa que nunca llega a ensuciarse de verdad.
+  </div>
+
+  <div class="card">
+    <h3><span class="dot"></span>Las cuatro piezas</h3>
+    <ul class="dotted">
+      <li><b>Día a día</b> — 20 minutos: 5 innegociables + una tarea rotativa, de lunes a domingo.</li>
+      <li><b>Sábados</b> — limpieza profunda rotativa: una zona por semana, todo el apartamento cada mes.</li>
+      <li><b>Por zonas</b> — la referencia técnica: cómo limpiar cada superficie, con qué y cada cuánto.</li>
+      <li><b>Productos y orden</b> — qué comprar, qué evitar y cómo mantener el orden sin esfuerzo.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3><span class="dot"></span>Cómo leer las prioridades</h3>
+    <p style="font-size:.92rem;margin:8px 0 4px"><span class="pill alta">Alta</span> &nbsp;Impacta higiene, salud u olores. No se pospone.</p>
+    <p style="font-size:.92rem;margin:4px 0"><span class="pill media">Media</span> &nbsp;Mantiene la casa presentable. Idealmente en su día.</p>
+    <p style="font-size:.92rem;margin:4px 0"><span class="pill baja">Baja</span> &nbsp;Estético o preventivo. Se puede mover sin consecuencias.</p>
+  </div>
+
+  <div class="callout gold">
+    <span class="ct">📦 Regla de oro del orden</span>
+    Todo objeto tiene una casa. Si algo no tiene un lugar asignado, ese es el problema a resolver — no la falta de tiempo para guardarlo. La mitad del “desorden” son objetos sin hogar.
+  </div>
+
+  <div class="callout warn">
+    <span class="ct">⚠️ Errores que arruinan el sistema</span>
+    <ul>
+      <li>Querer limpiar toda la casa a fondo el mismo día → agotamiento y abandono.</li>
+      <li>Saltarte los 20 min diarios “porque el sábado limpio” → el sábado se vuelve brutal.</li>
+      <li>Trapear con agua sucia o un solo paño para todo → repartes la mugre.</li>
+      <li>Mezclar químicos para “más poder” → peligroso y no limpia mejor.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ DÍA A DÍA ============ -->
+<section class="panel" id="diaria">
+  <div class="section-head">
+    <h2 class="serif">Rutina diaria de 20 minutos</h2>
+    <p>Una base fija de 5 innegociables (≈7 min) más una tarea rotativa según el día. Marca tus tareas: el progreso se guarda solo.</p>
+  </div>
+
+  <div class="card" style="background:linear-gradient(180deg,var(--teal-bg),var(--card))">
+    <h3>🔑 Los 5 innegociables · todos los días</h3>
+    <div class="meta">≈ 7 minutos · base que sostiene todo</div>
+    <ul class="chk" data-list="innegociables">
+      <li data-id="in1"><span class="box"><svg viewBox="0 0 14 14"><polyline points="2,7 6,11 12,3"/></svg></span><span class="txt">Tender la cama al levantarte <i style="color:var(--ink-soft)">(1 min)</i></span></li>
+      <li data-id="in2"><span class="box"><svg viewBox="0 0 14 14"><polyline points="2,7 6,11 12,3"/></svg></span><span class="txt">Despejar y secar el mesón + lavar/cargar loza <i style="color:var(--ink-soft)">(3 min)</i></span></li>
+      <li data-id="in3"><span class="box"><svg viewBox="0 0 14 14"><polyline points="2,7 6,11 12,3"/></svg></span><span class="txt">Paño al lavamanos del baño que usaste <i style="color:var(--ink-soft)">(1 min)</i></span></li>
+      <li data-id="in4"><span class="box"><svg viewBox="0 0 14 14"><polyline points="2,7 6,11 12,3"/></svg></span><span class="txt">Retirar desechos del arenero del gato <i style="color:var(--ink-soft)">(2 min)</i></span></li>
+      <li data-id="in5"><span class="box"><svg viewBox="0 0 14 14"><polyline points="2,7 6,11 12,3"/></svg></span><span class="txt">“Reset de 5 objetos”: guarda 5 cosas fuera de lugar</span></li>
+    </ul>
+    <div class="barwrap"><div class="bar" data-bar="innegociables"></div></div>
+  </div>
+
+  <div class="daygrid" id="dayGrid"></div>
+
+  <div class="callout note" style="margin-top:14px">
+    <span class="ct">🎯 Orden ideal del bloque de 20 min</span>
+    <ul>
+      <li>Pon un temporizador: trabajar contra reloj te mantiene en movimiento.</li>
+      <li>Recoge y despeja antes de limpiar.</li>
+      <li>De arriba hacia abajo y de seco a húmedo.</li>
+      <li>Termina con el piso, que recibe todo lo que cae.</li>
+    </ul>
+  </div>
+  <button class="reset" onclick="resetDay()">↺ Reiniciar marcas del día a día</button>
+</section>
+
+<!-- ============ SÁBADOS ============ -->
+<section class="panel" id="sabados">
+  <div class="section-head">
+    <h2 class="serif">Sábados de limpieza profunda</h2>
+    <p>Cada sábado, una zona distinta. En 4 sábados cubres todo el apartamento — y nunca te agotas. Elige el sábado de la semana:</p>
+  </div>
+
+  <div class="satwheel" id="satWheel"></div>
+
+  <div id="satDetail"></div>
+
+  <div class="callout gold">
+    <span class="ct">🎧 Hacerlo llevadero</span>
+    <ul>
+      <li>Playlist de 90–120 min: cuando se acaba, terminaste.</li>
+      <li>Podcast o audiolibro para tareas mecánicas (juntas, closets).</li>
+      <li>Empieza por lo que más pereza te da: lo demás se siente cuesta abajo.</li>
+      <li>Recompensa al final — el cerebro asocia el sábado con algo bueno.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ ZONAS ============ -->
+<section class="panel" id="zonas">
+  <div class="section-head">
+    <h2 class="serif">Guía por zonas</h2>
+    <p>Tu referencia técnica a fondo. Todo con productos eficaces, no tóxicos y ecológicos. Las etiquetas te dicen de un vistazo qué es seguro para tu gato.</p>
+  </div>
+
+  <div class="callout note">
+    <span class="ct">🏷️ Cómo leer las etiquetas</span>
+    <span class="tag eco">🌿 ECO</span> no tóxico y biodegradable &nbsp;
+    <span class="tag diy">🥣 CASERO</span> lo haces tú &nbsp;
+    <span class="tag catok">🐱 OK gato</span> seguro ya seco &nbsp;
+    <span class="tag catno">🚫 gato</span> evitar con gato
+  </div>
+
+  <div class="callout warn">
+    <span class="ct">🐱 Lo más importante para tu gato</span>
+    Los <b>aceites esenciales</b> y los limpiadores con <b>aroma a cítricos, pino, eucalipto, menta, canela o árbol de té</b> son tóxicos para los gatos: su hígado no los procesa y los absorben al respirar, por contacto y al lamerse. Esta guía los evita por completo. Regla de oro: <b>deja siempre secar las superficies antes de que el gato las toque</b>, incluso con productos suaves.
+  </div>
+
+  <!-- PISOS LAMINADOS -->
+  <details class="acc">
+    <summary><span class="emoji">🪵</span>Pisos laminados <span class="chev">›</span></summary>
+    <div class="body">
+      <div class="callout warn"><span class="ct">El enemigo nº1: el agua</span>El laminado es una capa decorativa sobre un núcleo de fibra que se hincha de forma irreversible si entra agua por las juntas. <b>Mopa apenas húmeda, nunca mojada</b>, y nunca dejar charcos.</div>
+
+      <div class="zsub"><span class="zi">🧽</span>Mantenimiento (rápido)</div>
+      <div class="freq">Aspirar/barrer: 2–3 veces/semana · mopa húmeda: semanal</div>
+      <ol class="steps">
+        <li>Aspira o barre primero — la arena actúa como lija y raya el acabado. Este paso es el que más conserva el brillo.</li>
+        <li>Pasa una mopa plana de microfibra apenas humedecida (al exprimirla no debe gotear), en el sentido de las tablas.</li>
+        <li>Aplica el producto sobre la mopa, jamás directo al piso.</li>
+        <li>Seca de inmediato cualquier zona que quede visiblemente húmeda.</li>
+      </ol>
+
+      <div class="zsub"><span class="zi">🌿</span>Con qué limpiarlo</div>
+      <div class="recipe"><b>Limpiador casero para laminado</b> <span class="tag diy">🥣 CASERO</span> <span class="tag eco">🌿 ECO</span> <span class="tag catok">🐱 OK gato</span><br>1 L de agua tibia + 1 cucharadita de jabón líquido neutro de losa (sin perfume) o jabón de coco rallado disuelto. Mopa, no charco. Sin aroma = sin riesgo para el gato.</div>
+      <ul class="dotted">
+        <li>Comercial eco: limpiadores de piso a base de plantas <b>sin fragancia</b> y con sello ecológico (tipo EU Ecolabel / EPA Safer Choice). <span class="tag eco">🌿 ECO</span> <span class="tag catok">🐱 OK gato</span></li>
+        <li>Para brillo ocasional, agua sola con la mopa bien escurrida basta.</li>
+      </ul>
+
+      <div class="zsub"><span class="zi">🚫</span>Qué NO usar</div>
+      <ul class="dotted">
+        <li><b>Aceites, ceras y “aceite de pino”:</b> dejan película pegajosa, opacan y el pino es tóxico para el gato. <span class="tag catno">🚫 gato</span></li>
+        <li><b>Vinagre frecuente o concentrado:</b> el ácido va matando el acabado del laminado con el tiempo.</li>
+        <li><b>Vapor y mucha agua:</b> el calor y la humedad despegan las capas.</li>
+        <li>Amoniaco, blanqueador, abrasivos en polvo.</li>
+      </ul>
+
+      <div class="zsub"><span class="zi">🩹</span>Manchas y problemas</div>
+      <table class="tbl"><tr><th>Mancha</th><th>Solución eco</th></tr>
+        <tr><td>Marcas de zapato/goma</td><td>Borrador de melamina apenas húmedo, frotar suave</td></tr>
+        <tr><td>Grasa o aceite</td><td>Paño con gotas de jabón neutro de losa diluido; secar enseguida</td></tr>
+        <tr><td>Pegamento o cera seca</td><td>Hielo en bolsa para endurecer, raspar con espátula plástica</td></tr>
+        <tr><td>Marcas blancas de humedad</td><td>Paño seco; si persiste, el daño ya es del núcleo</td></tr>
+      </table>
+      <div class="callout tip"><span class="ct">Mantener el brillo más tiempo</span>Tapetes en entradas, fieltros bajo los muebles, y quitarse los zapatos dentro de casa. Nunca arrastres muebles: levántalos.</div>
+    </div>
+  </details>
+
+  <!-- PISOS BALDOSA -->
+  <details class="acc">
+    <summary><span class="emoji">◻️</span>Pisos de baldosa (cocina y baños) <span class="chev">›</span></summary>
+    <div class="body">
+      <p>La baldosa tolera agua y productos más fuertes. El punto débil son las <b>juntas</b>, porosas y propensas a moho y grasa.</p>
+
+      <div class="zsub"><span class="zi">🧽</span>Limpieza normal</div>
+      <div class="freq">Semanal, o al ver suciedad visible</div>
+      <ol class="steps">
+        <li>Barre o aspira el grueso de la suciedad.</li>
+        <li>Trapea con agua tibia + jabón neutro de losa (o jabón de coco), o un multiusos eco sin fragancia.</li>
+        <li>Cambia el agua apenas se vea turbia: con agua sucia solo repartes la mugre.</li>
+        <li>En cocina añade un poco más de jabón para la grasa; en baños, deja secar bien.</li>
+      </ol>
+      <div class="recipe"><b>Multiusos casero para baldosa</b> <span class="tag diy">🥣 CASERO</span> <span class="tag eco">🌿 ECO</span> <span class="tag catok">🐱 OK gato</span><br>1 L agua tibia + 1 cda de jabón neutro de losa o jabón de coco rallado. Para desinfectar de verdad (no solo limpiar), usa peróxido de hidrógeno (ver más abajo) y deja secar antes de que pase el gato.</div>
+
+      <div class="zsub"><span class="zi">🧱</span>Limpieza profunda de juntas</div>
+      <div class="freq">Mensual o cuando se vean oscuras</div>
+      <div class="recipe"><b>Pasta para juntas</b> <span class="tag diy">🥣 CASERO</span> <span class="tag eco">🌿 ECO</span><br>1) Pasta de bicarbonato + un poco de agua sobre las juntas.<br>2) Frota junta por junta con cepillo de cerdas duras o cepillo de dientes viejo.<br>3) Rocía un poco de agua oxigenada (peróxido) encima — aclara y desinfecta sin cloro.<br>4) Espera 10 min, frota y enjuaga.</div>
+      <div class="callout warn"><span class="ct">Importante</span>El vinagre + bicarbonato hace espuma vistosa pero se neutralizan entre sí (queda casi agua salada): sirve para aflojar, no para desinfectar. Para juntas con moho, el peróxido de hidrógeno es más eficaz y, a diferencia del cloro, <b>no atrae ni intoxica al gato cuando ya está seco</b>. Nunca mezcles peróxido y vinagre en el mismo envase cerrado.</div>
+
+      <div class="zsub"><span class="zi">🍳</span>Grasa acumulada (cocina)</div>
+      <ul class="dotted">
+        <li>Piso pegajoso: agua caliente con más jabón neutro de losa; deja actuar 2 min antes de fregar.</li>
+        <li>Un sellador de juntas (1–2 veces al año) reduce muchísimo cuánto se ensucian.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- BAÑOS -->
+  <details class="acc">
+    <summary><span class="emoji">🚿</span>Baños <span class="chev">›</span></summary>
+    <div class="body">
+      <div class="callout note"><span class="ct">Principio: de arriba abajo y de limpio a sucio</span>Espejos y partes altas primero; inodoro y piso al final, para que lo sucio no contamine lo ya limpio.</div>
+
+      <div class="zsub"><span class="zi">🧽</span>Orden correcto</div>
+      <div class="freq">Repaso: semanal · profundo: cada 2–4 semanas</div>
+      <ol class="steps">
+        <li>Aplica producto en inodoro y ducha y déjalo actuar mientras limpias lo demás (el remojo hace el trabajo).</li>
+        <li>Espejos y vidrios.</li>
+        <li>Lavamanos y grifería.</li>
+        <li>Repisas, superficies y paredes con salpicaduras.</li>
+        <li>Ducha: frotar y enjuagar.</li>
+        <li>Inodoro: bajo el borde, exterior, base y bisagras.</li>
+        <li>Piso al final.</li>
+      </ol>
+
+      <div class="zsub"><span class="zi">🌿</span>Recetas eco que sí funcionan</div>
+      <div class="recipe"><b>Crema limpiadora multiuso</b> <span class="tag diy">🥣 CASERO</span> <span class="tag eco">🌿 ECO</span><br>Bicarbonato + un chorrito de jabón neutro de losa hasta formar pasta. Limpia lavamanos, bañera y azulejos por fricción suave, sin rayar. Es el reemplazo natural de los polvos abrasivos.</div>
+      <div class="recipe"><b>Desinfectante real sin cloro</b> <span class="tag eco">🌿 ECO</span> <span class="tag catok">🐱 OK gato (seco)</span><br>Peróxido de hidrógeno al 3% (agua oxigenada de farmacia) en un atomizador opaco. Rocía, espera 5–10 min, deja secar. Se descompone en agua y oxígeno, sin residuo tóxico, y desinfecta de verdad. Guárdalo sin luz.</div>
+      <div class="recipe"><b>Antical para grifería y mampara</b> <span class="tag diy">🥣 CASERO</span> <span class="tag eco">🌿 ECO</span><br>Ácido cítrico disuelto en agua tibia (1 cda por taza) — más eficaz y de aroma neutro que el vinagre. Paño empapado envuelto en el grifo 10 min, luego secar con microfibra.</div>
+
+      <div class="zsub"><span class="zi">🧩</span>Cada elemento</div>
+      <ul class="dotted">
+        <li><b>Inodoro:</b> espolvorea bicarbonato dentro, rocía peróxido, deja 10 min y cepilla bajo el borde. Exterior con paño aparte (tapa, base, bisagras: ahí se acumulan olores).</li>
+        <li><b>Sarro persistente:</b> ácido cítrico concentrado o una piedra pómez de baño (no raya la porcelana).</li>
+        <li><b>Grifería:</b> el peor enemigo es la cal — ácido cítrico y secar con microfibra para acabado sin manchas.</li>
+        <li><b>Ducha:</b> crema de bicarbonato para jabón pegado; escobilla de goma al salir = 80% menos cal.</li>
+        <li><b>Vidrios/espejos:</b> agua + un toque de ácido cítrico, aplicado al paño (no al espejo), secar con microfibra.</li>
+      </ul>
+
+      <div class="zsub"><span class="zi">🩹</span>Problemas comunes</div>
+      <table class="tbl"><tr><th>Problema</th><th>Solución eco</th><th>Cada</th></tr>
+        <tr><td>Desagüe lento u oloroso</td><td>1/2 taza bicarbonato + agua hirviendo; retirar pelos con gancho</td><td>Mensual</td></tr>
+        <tr><td>Olor persistente</td><td>Suele ser el desagüe seco: echa agua para sellar el sifón</td><td>Al notarlo</td></tr>
+        <tr><td>Moho en juntas/silicona</td><td>Peróxido de hidrógeno puntual, ventilando; si está negra por dentro, cambiar silicona</td><td>Al aparecer</td></tr>
+        <tr><td>Humedad ambiente</td><td>Ventilar tras cada ducha; dejar la puerta abierta</td><td>Diario</td></tr>
+      </table>
+      <div class="callout warn"><span class="ct">🚫 Evita en el baño con gato</span>Limpiadores de inodoro en pastilla/aroma fuerte y bloques de cisterna: muchos llevan fragancias y agentes que, en un baño donde el gato entra o bebe, son riesgosos. Opta por bicarbonato + peróxido.</div>
+    </div>
+  </details>
+
+  <!-- COCINA -->
+  <details class="acc">
+    <summary><span class="emoji">🍳</span>Cocina (con lavadora) <span class="chev">›</span></summary>
+    <div class="body">
+      <div class="callout gold"><span class="ct">La grasa fresca se quita sola</span>Un paño tras cocinar, mientras la superficie está tibia, ahorra una jornada de desengrasado al mes.</div>
+
+      <div class="zsub"><span class="zi">🧽</span>Orden recomendado</div>
+      <ol class="steps">
+        <li>Despejar y guardar lo fuera de lugar.</li>
+        <li>Lavar/cargar la loza para liberar el lavaplatos.</li>
+        <li>Estufa y campana (la grasa).</li>
+        <li>Mesones y salpicaderos.</li>
+        <li>Lavaplatos por fuera y grifería.</li>
+        <li>Piso al final.</li>
+      </ol>
+
+      <div class="zsub"><span class="zi">🌿</span>Tu kit eco de cocina</div>
+      <div class="recipe"><b>Desengrasante casero</b> <span class="tag diy">🥣 CASERO</span> <span class="tag eco">🌿 ECO</span><br>Agua tibia + jabón neutro de losa (o coco) + una cucharada de bicarbonato. Para grasa pegada, pasta de bicarbonato pura: cubre, espera 15 min y retira.</div>
+      <div class="recipe"><b>Desinfectar tablas y mesones</b> <span class="tag eco">🌿 ECO</span> <span class="tag catok">🐱 OK gato (seco)</span><br>Peróxido de hidrógeno al 3%: rocía, espera 5 min, deja secar. Ideal donde hay alimentos porque no deja residuo químico.</div>
+
+      <div class="zsub"><span class="zi">🧩</span>Cada electrodoméstico</div>
+      <table class="tbl"><tr><th>Elemento</th><th>Cómo (eco)</th><th>Cada</th></tr>
+        <tr><td>Estufa</td><td>Paño tibio tras cada uso; costra con pasta de bicarbonato 15 min</td><td>Diario / semanal</td></tr>
+        <tr><td>Microondas</td><td>Tazón con agua (sin limón si hay gato cerca); 3 min de vapor, luego paño</td><td>Semanal</td></tr>
+        <tr><td>Nevera interior</td><td>Agua + bicarbonato (nunca químicos cerca de alimentos); revisar vencimientos</td><td>Mensual</td></tr>
+        <tr><td>Empaques de goma</td><td>Cepillo de dientes con peróxido contra el moho</td><td>Mensual</td></tr>
+        <tr><td>Campana (filtros)</td><td>Remojo en agua muy caliente + jabón neutro de losa + bicarbonato</td><td>Mensual</td></tr>
+        <tr><td>Mesones de piedra</td><td>Solo jabón neutro de losa — NO ácidos (cítrico/vinagre manchan mármol y granito)</td><td>Diario</td></tr>
+      </table>
+
+      <div class="zsub"><span class="zi">🌀</span>Lavadora y lavadero</div>
+      <ul class="dotted">
+        <li>Deja la puerta y el cajón del detergente abiertos tras lavar para que sequen y no críen moho.</li>
+        <li>Limpieza del tambor: ciclo en caliente vacío con <b>ácido cítrico</b> (1/2 taza) o peróxido — eco y sin perfume. <span class="tag eco">🌿 ECO</span></li>
+        <li>El cajón del detergente sale y se lava aparte (ahí crece moho rosado/negro).</li>
+        <li>Friega el lavadero tras lavar trapeadores; deja secar.</li>
+      </ul>
+      <div class="callout tip"><span class="ct">Detergente con gato</span>Usa detergente sin fragancia y sin suavizantes perfumados: el gato camina y se acuesta sobre tu ropa y mantas. Las opciones “free & clear” / sin perfume son las más seguras.</div>
+    </div>
+  </details>
+
+  <!-- ZONA DEL GATO -->
+  <details class="acc">
+    <summary><span class="emoji">🐱</span>Zona del gato (arenero) <span class="chev">›</span></summary>
+    <div class="body">
+      <div class="callout warn"><span class="ct">🐱 Reglas de oro</span>Nada de aromas fuertes, cítricos, pino ni aceites esenciales — además de tóxicos, hacen que el gato deje de usar la caja. Productos sin perfume y enjuague abundante.</div>
+
+      <div class="zsub"><span class="zi">⏱️</span>Frecuencia ideal</div>
+      <table class="tbl"><tr><th>Tarea</th><th>Frecuencia</th></tr>
+        <tr><td>Retirar sólidos y grumos</td><td>1–2 veces al día (lo que más controla el olor)</td></tr>
+        <tr><td>Cambio total de arena + lavar caja</td><td>Cada 1–2 semanas según el tipo de arena</td></tr>
+      </table>
+
+      <div class="zsub"><span class="zi">🧼</span>Cómo lavar la caja</div>
+      <ol class="steps">
+        <li>Vacía la arena por completo.</li>
+        <li>Lava con <b>agua caliente y jabón neutro sin perfume</b> (losa o coco). <span class="tag eco">🌿 ECO</span> <span class="tag catok">🐱 OK gato</span></li>
+        <li>Si quieres desinfectar, peróxido de hidrógeno al 3%, deja 5 min y <b>enjuaga muy bien</b>.</li>
+        <li>Seca la caja por completo antes de poner arena nueva (la humedad hace que se pegue y huela).</li>
+      </ol>
+
+      <div class="zsub"><span class="zi">🌬️</span>Control de olores (sin perfumes)</div>
+      <ul class="dotted">
+        <li>Capa fina de <b>bicarbonato</b> en el fondo antes de la arena: absorbe olores sin aromas. <span class="tag diy">🥣 CASERO</span></li>
+        <li>Carbón activado en un recipiente cercano (no perfumado).</li>
+        <li>Tapete atrapa-arena bajo la caja; aspira los gránulos que el gato saca.</li>
+        <li>Ubica el arenero ventilado y lejos de la comida.</li>
+      </ul>
+      <div class="callout warn"><span class="ct">🚫 Nunca cerca del gato</span>Blanqueador con cloro (a algunos gatos les atrae el olor y lo lamen), amoniaco (huele a orina y lo confunde), desinfectantes “pino” o cítricos, y cualquier aceite esencial. Si usas peróxido, enjuaga y seca antes de devolver al gato.</div>
+    </div>
+  </details>
+
+  <!-- PUERTAS PAREDES VENTANAS -->
+  <details class="acc">
+    <summary><span class="emoji">🚪</span>Puertas, paredes y ventanas <span class="chev">›</span></summary>
+    <div class="body">
+      <div class="zsub"><span class="zi">🚪</span>Puertas y paredes</div>
+      <div class="freq">Manijas/interruptores: semanal · paredes: trimestral</div>
+      <ul class="dotted">
+        <li>Polvo primero (paño seco o plumero) en marcos y parte alta.</li>
+        <li>Marcas de dedos: paño apenas húmedo con jabón neutro de losa muy diluido. Borrador de melamina para marcas rebeldes (prueba en zona oculta, puede matar el brillo).</li>
+        <li>Paredes pintadas: poca agua, movimientos suaves de abajo hacia arriba para que los escurridos no dejen líneas.</li>
+        <li>Cocina: pared engrasada con desengrasante de jabón neutro de losa diluido.</li>
+        <li><b>Evitar:</b> abrasivos y esponjas verdes en pintura (descascaran el acabado).</li>
+      </ul>
+
+      <div class="zsub"><span class="zi">🪟</span>Ventanas — en orden</div>
+      <div class="freq">Mensual o por temporada</div>
+      <ol class="steps">
+        <li><b>Rieles primero</b> (lo más sucio): aspira el polvo; costra con bicarbonato y cepillo de dientes o un palillo con paño.</li>
+        <li><b>Marcos:</b> paño húmedo con jabón neutro de losa.</li>
+        <li><b>Vidrio:</b> agua + un toque de ácido cítrico al paño, secar con microfibra. Limpia en día nublado: con sol directo se seca antes y deja vetas.</li>
+        <li><b>Cortinas/persianas</b> al final.</li>
+      </ol>
+      <div class="recipe"><b>Limpiavidrios casero</b> <span class="tag diy">🥣 CASERO</span> <span class="tag eco">🌿 ECO</span><br>Agua + 1 cdita de ácido cítrico (o un poco de jabón neutro de losa) en atomizador. Truco profesional: seca en horizontal de un lado y en vertical del otro; si queda una raya sabrás de qué lado está.</div>
+
+      <div class="zsub"><span class="zi">🪟</span>Cortinas y persianas</div>
+      <ul class="dotted">
+        <li>Persianas: paño de microfibra o un calcetín en la mano, lámina por lámina.</li>
+        <li>Cortinas de tela: aspira con boquilla suave; lavado según etiqueta cada pocos meses (detergente sin fragancia por el gato).</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- CLOSETS -->
+  <details class="acc">
+    <summary><span class="emoji">👕</span>Closets <span class="chev">›</span></summary>
+    <div class="body">
+      <div class="zsub"><span class="zi">📐</span>Organización</div>
+      <ul class="dotted">
+        <li>Agrupa por tipo y luego por color: ves todo de un vistazo y evitas comprar repetido.</li>
+        <li>Dobla en vertical (de canto): ves todas las prendas sin desarmar la pila y ocupa menos.</li>
+        <li>Lo diario a la altura de la mano; temporada en cajas etiquetadas arriba.</li>
+      </ul>
+
+      <div class="zsub"><span class="zi">🧽</span>Limpieza y humedad</div>
+      <div class="freq">Repaso al cambiar de temporada o en el Sábado 3</div>
+      <ul class="dotted">
+        <li>Vacía por secciones, paño a las repisas y aspira el fondo (pelusa y pelo de gato).</li>
+        <li>Humedad/olor a encierro: <b>gel de sílice</b>, <b>carbón activado</b> o <b>bicarbonato</b> en frasco abierto. <span class="tag eco">🌿 ECO</span> Evita bolas antipolillas (naftalina): son tóxicas para el gato y dejan olor.</li>
+        <li>Nunca guardes ropa o zapatos húmedos: causa nº1 de moho.</li>
+        <li>Deja un dedo de aire entre la ropa y el fondo para que circule.</li>
+      </ul>
+      <div class="callout tip"><span class="ct">El flujo de la ropa</span>Limpia → closet. Sucia → cesto. “Un uso más” (pijama, jean del día) → un gancho específico, para que no contamine ni lo limpio ni lo sucio.</div>
+    </div>
+  </details>
+</section>
+
+
+<!-- ============ PRODUCTOS ============ -->
+<section class="panel" id="productos">
+  <div class="section-head">
+    <h2 class="serif">Productos: eficaces, no tóxicos y eco</h2>
+    <p>Un arsenal pequeño que limpia de verdad sin químicos agresivos, biodegradable y seguro para tu gato. Mezcla de caseros + marcas eco certificadas.</p>
+  </div>
+
+  <div class="callout tip">
+    <span class="ct">🌿 Los 7 básicos que reemplazan a casi todo</span>
+    <ul>
+      <li><b>Bicarbonato de sodio</b> — abrasivo suave, absorbe olores. <span class="tag diy">🥣</span></li>
+      <li><b>Jabón neutro de losa o de coco</b> — desengrasa y limpia todo, fácil en Bogotá, sin perfume. <span class="tag eco">🌿</span></li>
+      <li><b>Peróxido de hidrógeno 3%</b> (agua oxigenada) — desinfecta de verdad, se vuelve agua y oxígeno. <span class="tag eco">🌿</span></li>
+      <li><b>Percarbonato de sodio</b> ("oxígeno activo") — blanqueador y quitamanchas de ropa sin cloro. <span class="tag eco">🌿</span></li>
+      <li><b>Ácido cítrico</b> — antical y brillo, mejor que el vinagre y de olor neutro.</li>
+      <li><b>Microfibra</b> — limpia con solo agua en muchos casos.</li>
+      <li><b>Detergente sin fragancia</b> — para la ropa (importante por el gato).</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>🧪 Por qué estos y no otros</h3>
+    <ul class="dotted">
+      <li><b>Peróxido de hidrógeno</b> es de los pocos desinfectantes que es a la vez eficaz contra bacterias y virus, de baja toxicidad y biodegradable: se descompone en agua y oxígeno sin residuo. Por eso lo usan clínicas veterinarias. <b>Siempre deja secar antes de que pase el gato.</b></li>
+      <li><b>Vinagre / ácido cítrico</b> son buenos desincrustantes de cal, pero <b>no desinfectan</b> de verdad: úsalos para brillo y cal, no para gérmenes.</li>
+      <li><b>Bicarbonato + jabón neutro</b> cubren limpieza y grasa cotidiana sin tóxicos.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>🐱 Lo que SÍ y lo que NO con gato</h3>
+    <table class="tbl"><tr><th>Seguro (ya seco)</th><th>Evitar siempre</th></tr>
+      <tr><td class="yes">Bicarbonato</td><td class="no">Aceites esenciales (todos)</td></tr>
+      <tr><td class="yes">Jabón neutro / de coco sin perfume</td><td class="no">Limpiadores con pino o cítricos</td></tr>
+      <tr><td class="yes">Peróxido de hidrógeno (en superficies, seco)</td><td class="no">Blanqueador con cloro</td></tr>
+      <tr><td class="yes">Ácido cítrico</td><td class="no">Amoniaco</td></tr>
+      <tr><td class="yes">Carbón activado / gel de sílice</td><td class="no">Naftalina, ambientadores y velas perfumadas</td></tr>
+    </table>
+    <p style="font-size:.82rem;color:var(--ink-soft);margin-top:8px">El gato absorbe tóxicos al respirar, por contacto con sus patas y al acicalarse. Lo “natural” no siempre es seguro: muchos aceites esenciales son de los peores.</p>
+  </div>
+
+  <div class="card">
+    <h3>🛒 Caseros vs. marcas eco</h3>
+    <table class="tbl"><tr><th>Para</th><th>Casero <span class="tag diy">🥣</span></th><th>Marca eco <span class="tag eco">🌿</span></th></tr>
+      <tr><td>Multiusos</td><td>Agua + jabón neutro de losa</td><td>Limpiador vegetal sin fragancia, sello ecológico</td></tr>
+      <tr><td>Desinfectar</td><td>Peróxido 3% en atomizador opaco</td><td>Desinfectante de peróxido acelerado (tipo veterinario)</td></tr>
+      <tr><td>Antical/baño</td><td>Ácido cítrico en agua</td><td>Antical a base de ácido cítrico</td></tr>
+      <tr><td>Grasa</td><td>Bicarbonato + jabón neutro</td><td>Desengrasante vegetal sin perfume</td></tr>
+      <tr><td>Pisos</td><td>Agua + chorrito de jabón neutro</td><td>Limpiador de pisos eco sin fragancia</td></tr>
+      <tr><td>Olores (gato)</td><td>Bicarbonato / carbón activado</td><td>Eliminador de olores enzimático sin perfume</td></tr>
+    </table>
+    <p style="font-size:.82rem;color:var(--ink-soft);margin-top:8px">Al comprar marcas, busca sellos como <b>EU Ecolabel</b>, <b>EPA Safer Choice</b> o <b>Ecocert</b>, y la palabra <b>“sin fragancia / free &amp; clear”</b>.</p>
+  </div>
+
+  <div class="card">
+    <h3>👕 Percarbonato de sodio para la ropa</h3>
+    <div class="meta">El "oxígeno activo": blanqueador y quitamanchas sin cloro, biodegradable</div>
+    <p style="font-size:.92rem">Al disolverse en agua libera oxígeno activo: quita manchas orgánicas, recupera el blanco y desodoriza, sin cloro ni perfumes. Sirve para ropa blanca <b>y de color</b> porque no decolora.</p>
+    <div class="recipe"><b>Carga normal</b> <span class="tag eco">🌿 ECO</span><br>1–2 cucharadas en el tambor o en el cajón del detergente, junto a tu detergente de siempre.</div>
+    <div class="recipe"><b>Manchas difíciles</b> (sudor, café, vino, sangre, grasa)<br>Haz una pasta con percarbonato + un poco de agua caliente, aplícala sobre la mancha, deja actuar <b>30 minutos</b> y luego lava.</div>
+    <div class="recipe"><b>Remojo para blanquear</b><br>3–4 cucharadas por litro de agua caliente; sumerge la prenda antes de lavar.</div>
+    <div class="callout note" style="margin:10px 0"><span class="ct">🌡️ Clave para que funcione</span>Necesita <b>agua tibia o caliente</b> (40–60 °C): el calor libera el oxígeno. En agua fría su efecto baja mucho. También puedes hacer un remojo previo en caliente y luego lavar en frío.</div>
+    <div class="callout warn"><span class="ct">⚠️ Cuidados</span>No lo uses en <b>lana, seda ni cuero</b>. No lo mezcles con vinagre en el mismo ciclo. Y guárdalo seco y cerrado (la humedad lo activa).</div>
+  </div>
+
+  <div class="card">
+    <h3>🌸 Que la ropa huela rico (sin dañar al gato)</h3>
+    <div class="meta">El reto: las perlas de olor y cápsulas perfumadas son riesgosas con gato</div>
+    <div class="callout warn"><span class="ct">🐱 Por qué evitar perlas de olor y cápsulas perfumadas</span>Sus fragancias y aceites quedan en la ropa, y como el gato se acuesta sobre ella y se lame, los respira y los ingiere. Los gatos no procesan bien esos compuestos y pueden darles tos, irritación de piel o problemas respiratorios. La regla es la misma de todo el manual: <b>sin fragancia fuerte donde el gato vive</b>.</div>
+    <p style="font-size:.92rem;margin-top:8px"><b>Lo que sí deja la ropa fresca y rica — y es seguro:</b></p>
+    <ul class="dotted">
+      <li><b>Quitar el olor en vez de taparlo:</b> el percarbonato y el bicarbonato neutralizan los olores de verdad. Ropa sin mal olor = sensación de limpio real. <span class="tag eco">🌿</span></li>
+      <li><b>Secar al sol:</b> el sol desinfecta y deja ese olor a "ropa fresca" natural, gratis y sin químicos. <span class="tag eco">🌿</span></li>
+      <li><b>Potenciador de olor SIN fragancia</b> (neutralizador de olores): elimina a nivel molecular, biodegradable y sin perfume. Busca los que digan "unscented / sin fragancia / pet safe". <span class="tag catok">🐱 OK gato</span></li>
+      <li><b>Hidrolato / agua floral suave</b> (de manzanilla o rosa, <b>sin aceite esencial</b>) — un toque en el último enjuague para aroma muy ligero. Úsalo con mesura.</li>
+      <li><b>Bolsitas de tela con bicarbonato o carbón activado</b> en el clóset: mantienen la ropa guardada con olor neutro y fresco. <span class="tag diy">🥣</span></li>
+    </ul>
+    <div class="callout tip"><span class="ct">Truco de lavandería</span>Un exceso de jabón es la causa nº1 de ropa que "huele a encerrado": el residuo atrapa bacterias. Usa la dosis justa, añade el percarbonato y haz un enjuague extra. Eso solo ya cambia el olor por completo.</div>
+  </div>
+
+  <div class="card">
+    <h3>🧰 Herramientas (vale/no vale premium)</h3>
+    <div class="supgrid">
+      <div class="supitem"><div class="sname">🌀 Aspiradora</div><div class="suse">Polvo y pelo de gato; antes de trapear</div><span class="stag premium">Vale premium</span></div>
+      <div class="supitem"><div class="sname">🧹 Mopa microfibra</div><div class="suse">Limpia laminado solo con agua</div><span class="stag premium">Vale premium</span></div>
+      <div class="supitem"><div class="sname">🟦 Paños microfibra</div><div class="suse">Un color por zona; reutilizables</div><span class="stag basic">Económica</span></div>
+      <div class="supitem"><div class="sname">🧴 Escobilla de goma</div><div class="suse">Ducha y vidrios, menos cal</div><span class="stag basic">Económica</span></div>
+      <div class="supitem"><div class="sname">🪥 Cepillos</div><div class="suse">Juntas, grifería, rincones</div><span class="stag basic">Económica</span></div>
+      <div class="supitem"><div class="sname">🧪 Atomizadores opacos</div><div class="suse">Para tus mezclas (el peróxido teme la luz)</div><span class="stag basic">Económica</span></div>
+    </div>
+  </div>
+
+  <div class="callout warn">
+    <span class="ct">☠️ Nunca mezclar — vale incluso para lo natural</span>
+    <ul>
+      <li><b>Peróxido + vinagre</b> en envase cerrado → ácido peracético irritante. Úsalos por separado.</li>
+      <li><b>Blanqueador + vinagre/ácido</b> → gas cloro. (Y evita el cloro por el gato.)</li>
+      <li><b>Blanqueador + amoniaco</b> → gas tóxico.</li>
+    </ul>
+    <p style="margin-top:6px"><b>Regla simple:</b> un producto a la vez, enjuaga entre uno y otro, ventila, y deja secar antes de que pase el gato.</p>
+  </div>
+
+  <p style="font-size:.78rem;color:var(--ink-soft);text-align:center;margin-top:6px">La info de seguridad felina está basada en fuentes veterinarias (Pet Poison Helpline, VCA, ASPCA, ABCD cats & vets). Ante una posible intoxicación, contacta a tu veterinario de inmediato.</p>
+
+  <div class="card" style="background:linear-gradient(180deg,var(--gold-bg),var(--card))">
+    <h3>🛒 Lista de compras completa</h3>
+    <div class="meta">Todo lo que usa el manual, marcable y guardado. Con esto cubres el apartamento entero.</div>
+
+    <div class="zsub"><span class="zi">🧴</span>Productos de limpieza</div>
+    <ul class="chk" data-list="shop_prod">
+      <li data-id="sp1"><span class="box"><svg viewBox="0 0 14 14"><polyline points="2,7 6,11 12,3"/></svg></span><span class="txt">Bicarbonato de sodio (1 kg) <span class="tag eco">🌿</span></span></li>
+      <li data-id="sp2"><span class="box"><svg viewBox="0 0 14 14"><polyline points="2,7 6,11 12,3"/></svg></span><span class="txt">Percarbonato de sodio / "oxígeno activo" (1 kg) <span class="tag eco">🌿</span></span></li>
+      <li data-id="sp3"><span class="box"><svg viewBox="0 0 14 14"><polyline points="2,7 6,11 12,3"/></svg></span><span class="txt">Ácido cítrico (250 g)</span></li>
+      <li data-id="sp4"><span class="box"><svg viewBox="0 0 14 14"><polyline points="2,7 6,11 12,3"/></svg></span><span class="txt">Peróxido de hidrógeno al 3% / agua oxigenada (droguería)</span></li>
+      <li data-id="sp5"><span class="box"><svg viewBox="0 0 14 14"><polyline points="2,7 6,11 12,3"/></svg></span><span class="txt">Jabón neutro de losa o jabón de coco en barra</span></li>
+      <li data-id="sp6"><span class="box"><svg viewBox="0 0 14 14"><polyline points="2,7 6,11 12,3"/></svg></span><span class="txt">Detergente de ropa SIN fragancia <span class="tag catok">🐱</span></span></li>
+      <li data-id="sp7"><span class="box"><svg viewBox="0 0 14 14"><polyline points="2,7 6,11 12,3"/></svg></span><span class="txt">Potenciador de olor sin fragancia (opcional, para la ropa) <span class="tag catok">🐱</span></span></li>
+      <li data-id="sp8"><span class="box"><svg viewBox="0 0 14 14"><polyline points="2,7 6,11 12,3"/></svg></span><span class="txt">Carbón activado o gel de sílice (humedad y olores)</span></li>
+    </ul>
+
+    <div class="zsub"><span class="zi">🧰</span>Herramientas</div>
+    <ul class="chk" data-list="shop_tools">
+      <li data-id="st1"><span class="box"><svg viewBox="0 0 14 14"><polyline points="2,7 6,11 12,3"/></svg></span><span class="txt">Aspiradora (clave por el gato)</span></li>
+      <li data-id="st2"><span class="box"><svg viewBox="0 0 14 14"><polyline points="2,7 6,11 12,3"/></svg></span><span class="txt">Mopa plana de microfibra (paños lavables)</span></li>
+      <li data-id="st3"><span class="box"><svg viewBox="0 0 14 14"><polyline points="2,7 6,11 12,3"/></svg></span><span class="txt">Paños de microfibra de varios colores (uno por zona)</span></li>
+      <li data-id="st4"><span class="box"><svg viewBox="0 0 14 14"><polyline points="2,7 6,11 12,3"/></svg></span><span class="txt">Escobilla de goma (ducha y vidrios)</span></li>
+      <li data-id="st5"><span class="box"><svg viewBox="0 0 14 14"><polyline points="2,7 6,11 12,3"/></svg></span><span class="txt">Cepillo de cerdas duras + cepillo de dientes viejo (juntas)</span></li>
+      <li data-id="st6"><span class="box"><svg viewBox="0 0 14 14"><polyline points="2,7 6,11 12,3"/></svg></span><span class="txt">Borrador de melamina (marcas en paredes y pisos)</span></li>
+      <li data-id="st7"><span class="box"><svg viewBox="0 0 14 14"><polyline points="2,7 6,11 12,3"/></svg></span><span class="txt">Atomizadores opacos (para tus mezclas)</span></li>
+      <li data-id="st8"><span class="box"><svg viewBox="0 0 14 14"><polyline points="2,7 6,11 12,3"/></svg></span><span class="txt">Guantes</span></li>
+      <li data-id="st9"><span class="box"><svg viewBox="0 0 14 14"><polyline points="2,7 6,11 12,3"/></svg></span><span class="txt">Escoba + recogedor</span></li>
+      <li data-id="st10"><span class="box"><svg viewBox="0 0 14 14"><polyline points="2,7 6,11 12,3"/></svg></span><span class="txt">Balde o caja portátil para cargar todo</span></li>
+    </ul>
+
+    <div class="zsub"><span class="zi">🐱</span>Zona del gato</div>
+    <ul class="chk" data-list="shop_cat">
+      <li data-id="sc1"><span class="box"><svg viewBox="0 0 14 14"><polyline points="2,7 6,11 12,3"/></svg></span><span class="txt">Tapete atrapa-arena</span></li>
+      <li data-id="sc2"><span class="box"><svg viewBox="0 0 14 14"><polyline points="2,7 6,11 12,3"/></svg></span><span class="txt">Pala para arena</span></li>
+      <li data-id="sc3"><span class="box"><svg viewBox="0 0 14 14"><polyline points="2,7 6,11 12,3"/></svg></span><span class="txt">Bicarbonato extra para el fondo del arenero</span></li>
+    </ul>
+
+    <div class="barwrap"><div class="bar" data-bar="shop_all"></div></div>
+    <p style="font-size:.8rem;color:var(--ink-soft);text-align:center" id="shopCount">0 de 0 marcados</p>
+    <button class="reset" onclick="resetShop()">↺ Reiniciar lista de compras</button>
+  </div>
+</section>
+
+
+<!-- ============ BOGOTÁ ============ -->
+<section class="panel" id="bogota">
+  <div class="section-head">
+    <h2 class="serif">Dónde comprar en Bogotá</h2>
+    <p>Casi todo esto son insumos para hacer tus propios limpiadores: sale mucho más barato en tiendas de químicos que las versiones de marca. Aquí la guía local.</p>
+  </div>
+
+  <div class="callout gold">
+    <span class="ct">💡 El truco que ahorra plata</span>
+    El "jabón de Castilla", el percarbonato y el ácido cítrico son caros como producto de marca, pero baratos como <b>materia prima</b>. Búscalos en tiendas de insumos químicos y para fabricación de detergentes, no en el supermercado.
+  </div>
+
+  <div class="card">
+    <h3>🧪 Insumos químicos (lo más económico)</h3>
+    <div class="meta">Percarbonato, bicarbonato, ácido cítrico, peróxido, soda, etc.</div>
+    <ul class="dotted">
+      <li><b>Zona Ricaurte / Av. Caracas / Paloquemao:</b> es el sector con más tiendas de químicos y materias primas para aseo en Bogotá. Pregunta por "oxígeno activo" (percarbonato), ácido cítrico y bicarbonato.</li>
+      <li><b>Químicos Campota y Cía:</b> manejan ácido cítrico, bicarbonato de sodio y peróxido de hidrógeno, entre muchos otros.</li>
+      <li><b>Tiendas de "materias primas para cosmética y aseo":</b> venden todo para fabricar tus limpiadores, en cantidades pequeñas o por kilo.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>🛒 Por producto, dónde es más fácil</h3>
+    <table class="tbl"><tr><th>Producto</th><th>Dónde conseguirlo</th></tr>
+      <tr><td>Percarbonato ("oxígeno activo")</td><td>Insumos químicos / fabricación de detergentes; bolsas de 1–2 kg en MercadoLibre con envío</td></tr>
+      <tr><td>Bicarbonato de sodio</td><td>Supermercados (repostería), droguerías, insumos químicos (más barato por kilo)</td></tr>
+      <tr><td>Ácido cítrico</td><td>Tiendas de repostería/insumos, químicos; MercadoLibre</td></tr>
+      <tr><td>Peróxido de hidrógeno (agua oxigenada)</td><td>Cualquier droguería/farmacia (al 3%)</td></tr>
+      <tr><td>Jabón neutro de losa / coco</td><td>Supermercados (Éxito, Jumbo, Olímpica), D1, Ara, tiendas de barrio</td></tr>
+      <tr><td>Detergente sin fragancia</td><td>Supermercados — busca "para bebé", "hipoalergénico" o sin perfume</td></tr>
+      <tr><td>Microfibra, mopa, escobilla</td><td>Supermercados, Homecenter, tiendas de aseo</td></tr>
+      <tr><td>Carbón activado / gel de sílice</td><td>Acuarios/mascotas (carbón), MercadoLibre (sílice)</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>🌐 Tiendas online con envío en Bogotá</h3>
+    <ul class="dotted">
+      <li><b>MercadoLibre Colombia</b> — percarbonato, ácido cítrico, bicarbonato, microfibra; filtra por "Bogotá D.C." para envío rápido.</li>
+      <li><b>Tiendas eco / zero waste locales</b> — venden percarbonato y jabones naturales a granel (busca "tienda a granel Bogotá" o "zero waste Bogotá").</li>
+      <li><b>Distribuidores de químicos</b> — venden percarbonato como "oxígeno activo" por kilo o bulto, con envío a todo el país.</li>
+    </ul>
+  </div>
+
+  <div class="callout tip">
+    <span class="ct">🛍️ Lista de mercado para empezar</span>
+    <ul>
+      <li>1 kg de bicarbonato</li>
+      <li>1 kg de percarbonato ("oxígeno activo")</li>
+      <li>250 g de ácido cítrico</li>
+      <li>1 frasco de agua oxigenada al 3% (droguería) + 1 atomizador opaco</li>
+      <li>1 jabón neutro de losa o de coco</li>
+      <li>1 detergente sin fragancia</li>
+      <li>3–4 paños de microfibra de colores distintos</li>
+    </ul>
+    Con eso cubres prácticamente todo el manual por muy poco dinero.
+  </div>
+
+  <div class="callout warn">
+    <span class="ct">🐱 Recordatorio por tu gato</span>
+    Al comprar, evita todo lo que diga aroma a <b>cítricos, pino, eucalipto, lavanda o "aceites esenciales"</b>, y el detergente perfumado. Elige siempre las versiones <b>sin fragancia</b>.
+  </div>
+</section>
+
+<!-- ============ ORDEN ============ -->
+<section class="panel" id="orden">
+  <div class="section-head">
+    <h2 class="serif">Sistema de organización</h2>
+    <p>La limpieza quita la suciedad; la organización quita el caos. Sin orden, limpiar se vuelve imposible.</p>
+  </div>
+
+  <div class="card">
+    <h3>🧭 Los 4 principios</h3>
+    <ol class="steps">
+      <li><b>Una casa para cada cosa.</b> Sin lugar fijo, créaselo o descártalo.</li>
+      <li><b>Tocar una vez.</b> Llévalo a su sitio en vez de dejarlo “por mientras”.</li>
+      <li><b>Superficies despejadas = mente despejada.</b> Lo que vive ahí cabe en una bandeja.</li>
+      <li><b>Entra uno, sale uno.</b> Por cada cosa nueva, una sale.</li>
+    </ol>
+  </div>
+
+  <div class="callout note">
+    <span class="ct">⚡ Ordenar rápido (10 minutos)</span>
+    Toma una canasta y recorre la casa recogiendo lo fuera de lugar. Luego repártelo cuarto por cuarto. Mucho más rápido que ir y volver por cada objeto.
+  </div>
+
+  <details class="acc"><summary><span class="emoji">👚</span>Ropa <span class="chev">›</span></summary>
+    <div class="body"><ul class="dotted">
+      <li>Doblado vertical; colgar lo que se arruga.</li>
+      <li>Tres divisiones de sucia: blancos, color, delicados.</li>
+      <li>Una barra para ropa limpia aún sin guardar.</li>
+    </ul></div>
+  </details>
+  <details class="acc"><summary><span class="emoji">🧴</span>Productos de limpieza <span class="chev">›</span></summary>
+    <div class="body"><ul class="dotted">
+      <li>Un canasto portátil con lo de uso frecuente.</li>
+      <li>Químicos fuertes arriba, separados y lejos del gato.</li>
+      <li>Repuestos en otra caja para no saturar.</li>
+    </ul></div>
+  </details>
+  <details class="acc"><summary><span class="emoji">💻</span>Estudio/oficina <span class="chev">›</span></summary>
+    <div class="body"><ul class="dotted">
+      <li>Escritorio despejado: solo lo de uso diario encima.</li>
+      <li>Cables agrupados con bridas o canaletas.</li>
+      <li>Bandejas “pendientes” y “archivado”.</li>
+      <li>2 min de reset al cerrar la jornada.</li>
+    </ul></div>
+  </details>
+  <details class="acc"><summary><span class="emoji">📦</span>Cuarto de ropa/trastero <span class="chev">›</span></summary>
+    <div class="body"><ul class="dotted">
+      <li>Estanterías con cajas etiquetadas (etiqueta TODO por fuera).</li>
+      <li>Pesado abajo, liviano arriba, frecuente a la mano.</li>
+      <li>Deja un pasillo libre para acceder sin mover cajas.</li>
+      <li>Revisión cada 3–4 meses: lo no tocado, candidato a salir.</li>
+    </ul></div>
+  </details>
+
+  <div class="callout tip">
+    <span class="ct">✨ El cierre del sistema</span>
+    Si mantienes los innegociables, los 20 min rotativos, el sábado de turno y estos sistemas de orden, tu apartamento se sostiene solo. La clave no es hacer mucho un día, sino poco todos los días. Empieza esta semana por una sola cosa: los innegociables.
+  </div>
+</section>
+
+</main>
+
+<footer>Manual del Hogar · tu sistema personal de limpieza y orden · el progreso se guarda en este dispositivo</footer>
+
+<div class="dock" id="dock">
+  <button data-p="inicio" class="active"><span class="di">🏡</span>Inicio</button>
+  <button data-p="diaria"><span class="di">⏱️</span>Hoy</button>
+  <button data-p="sabados"><span class="di">🧽</span>Sábado</button>
+  <button data-p="zonas"><span class="di">📍</span>Zonas</button>
+</div>
+<script>
+/* ---------- almacenamiento simple ---------- */
+const store = {
+  get(k,d){ try{const v=localStorage.getItem('hogar_'+k);return v?JSON.parse(v):d;}catch(e){return d;} },
+  set(k,v){ try{localStorage.setItem('hogar_'+k,JSON.stringify(v));}catch(e){} }
+};
+
+/* ---------- datos: días ---------- */
+const DAYS = [
+  {n:'Lunes', focus:'Pisos comunes', items:[
+    {t:'Innegociables diarios', m:'7 min', p:'alta'},
+    {t:'Aspirar/barrer sala, comedor y pasillo', m:'8 min', p:'media'},
+    {t:'Mopa rápida si hace falta (laminado apenas húmedo)', m:'5 min', p:'media'}]},
+  {n:'Martes', focus:'Baños express', items:[
+    {t:'Innegociables diarios', m:'7 min', p:'alta'},
+    {t:'Escobilla + paño desinfectante a los dos inodoros', m:'6 min', p:'alta'},
+    {t:'Espejos y grifería con microfibra', m:'5 min', p:'media'}]},
+  {n:'Miércoles', focus:'Cocina ligera', items:[
+    {t:'Innegociables diarios', m:'7 min', p:'alta'},
+    {t:'Estufa y salpicaderos con desengrasante', m:'6 min', p:'media'},
+    {t:'Sacar basura y desinfectar el bote', m:'5 min', p:'alta'}]},
+  {n:'Jueves', focus:'Polvo y superficies', items:[
+    {t:'Innegociables diarios', m:'7 min', p:'alta'},
+    {t:'Desempolvar sala y estudio (microfibra)', m:'8 min', p:'baja'},
+    {t:'Paño a manijas e interruptores (alto contacto)', m:'5 min', p:'media'}]},
+  {n:'Viernes', focus:'Ropa y reset', items:[
+    {t:'Innegociables diarios', m:'7 min', p:'alta'},
+    {t:'Poner una carga de lavadora / clasificar ropa', m:'5 min', p:'media'},
+    {t:'Reset de superficies: dejar la casa despejada', m:'8 min', p:'media'}]},
+  {n:'Sábado', focus:'Limpieza profunda', sat:true, items:[
+    {t:'Solo innegociables — hoy toca el sábado profundo', m:'7 min', p:'alta'}]},
+  {n:'Domingo', focus:'Ligero y preparación', items:[
+    {t:'Innegociables diarios', m:'7 min', p:'alta'},
+    {t:'Cambio total de arena del gato + lavar caja (quincenal)', m:'8 min', p:'alta'},
+    {t:'Planear comidas y dejar ropa lista para el lunes', m:'5 min', p:'baja'}]}
+];
+
+/* ---------- datos: sábados ---------- */
+const SATS = [
+  {n:'Sábado 1', t:'Cocina, lavadora y gato', time:'2–3 h', tools:'Desengrasante, bicarbonato, vinagre, desinfectante, paños, cepillo viejo, guantes',
+   steps:['Vaciar campana; filtros a remojo en agua caliente con desengrasante','Gabinetes por fuera (foco sobre estufa y manijas)','Estufa a fondo: quemadores remojados, costra con pasta de bicarbonato','Microondas (vapor con limón) y electrodomésticos pequeños','Nevera por dentro: vaciar por estantes, bicarbonato, vencimientos','Mesones; lavaplatos por dentro y desagüe','Lavadora: ciclo caliente con vinagre, lavar cajón, secar empaques','Lavadero y estendedero','Arenero: cambio total y lavado profundo','Montar filtros limpios','Piso de baldosa y juntas al final']},
+  {n:'Sábado 2', t:'Los dos baños', time:'1.5–2 h', tools:'Desinfectante, vinagre/antical, gel de blanqueador, cepillo viejo, escobilla, microfibra, guantes',
+   steps:['Aplicar producto en inodoro y ducha; dejar actuar','Espejos y vidrios','Repisas, lavamanos y grifería (vinagre vs cal)','Ducha: azulejos, mampara, sarro; juntas con bicarbonato + vinagre','Moho en silicona: gel de blanqueador puntual, ventilando','Inodoro: bajo el borde, exterior, base y bisagras','Desagües: bicarbonato + vinagre + agua caliente','Paredes con salpicaduras','Piso y juntas; reponer papel, jabón y toallas']},
+  {n:'Sábado 3', t:'Habitaciones, closets y estudio', time:'2–3 h', tools:'Aspiradora, mopa, paños, antihumedad, cajas, bolsa para donar',
+   steps:['Desempolvar de arriba abajo: lámparas, marcos, mesas de noche','Cambiar sábanas y airear/aspirar el colchón','Closets: vaciar por secciones, paño a repisas, reorganizar','Mini-purga: separar lo que no usas para donar (15 min máx)','Estudio: despejar escritorio, ordenar cables, desempolvar equipos','Marcos, manijas e interruptores de las habitaciones','Aspirar y mopa al laminado de las tres habitaciones']},
+  {n:'Sábado 4', t:'Sala, ventanas y detalles', time:'1.5–2.5 h', tools:'Limpiavidrios, microfibra, aspiradora con boquillas, multiusos, escalera',
+   steps:['Desempolvar techos/esquinas (telarañas), lámparas y ventiladores','Ventanas completas: rieles, marcos, vidrios; cortinas/persianas','Puertas y paredes: marcas, manijas, zócalos','Sala: superficies y electrónica; aspirar sofá y cojines','Detalles olvidados: controles, interruptores, detrás de muebles','Aspirar y mopa al laminado de sala y comedor al final']}
+];
+
+/* ---------- navegación ---------- */
+function go(id){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active',p.id===id));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.dataset.p===id));
+  document.querySelectorAll('.dock button').forEach(b=>b.classList.toggle('active',b.dataset.p===id));
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+document.querySelectorAll('.tab,.dock button').forEach(b=>b.addEventListener('click',()=>go(b.dataset.p)));
+
+/* ---------- checklists con persistencia ---------- */
+function bindList(ul){
+  const key='chk_'+ul.dataset.list;
+  const saved=store.get(key,{});
+  ul.querySelectorAll('li').forEach(li=>{
+    if(saved[li.dataset.id]) li.classList.add('done');
+    li.addEventListener('click',()=>{
+      li.classList.toggle('done');
+      const s=store.get(key,{}); s[li.dataset.id]=li.classList.contains('done'); store.set(key,s);
+      updateBar(ul); refreshToday(); updateShop();
+    });
+  });
+  updateBar(ul);
+}
+function updateBar(ul){
+  const bar=document.querySelector('.bar[data-bar="'+ul.dataset.list+'"]');
+  if(!bar) return;
+  const all=ul.querySelectorAll('li').length, done=ul.querySelectorAll('li.done').length;
+  bar.style.width=(all?Math.round(done/all*100):0)+'%';
+}
+
+/* ---------- render días ---------- */
+const todayIdx=(new Date().getDay()+6)%7; // 0=Lunes
+function renderDays(){
+  const grid=document.getElementById('dayGrid');
+  grid.innerHTML='';
+  DAYS.forEach((d,i)=>{
+    const isToday=i===todayIdx;
+    const det=document.createElement('details');
+    det.className='daycard'+(isToday?' is-today':'');
+    if(isToday) det.open=true;
+    const listId='day'+i;
+    let lis=d.items.map((it,j)=>`<li data-id="d${i}_${j}"><span class="box"><svg viewBox="0 0 14 14"><polyline points="2,7 6,11 12,3"/></svg></span><span class="txt">${it.t} <span class="pill ${it.p}">${it.p}</span> <i style="color:var(--ink-soft);font-size:.82em">· ${it.m}</i></span></li>`).join('');
+    det.innerHTML=`<summary>
+        <span class="dnum">${d.n.slice(0,3)}</span>
+        <span><span class="dtitle">${d.n}</span><br><span class="dfocus">${d.focus}</span></span>
+        ${isToday?'<span class="badge-today">Hoy</span>':''}
+        <span class="chev">›</span>
+      </summary>
+      <div class="dbody">
+        ${d.sat?'<div class="callout gold" style="margin:8px 0"><span class="ct">Hoy es sábado profundo</span>Ve a la pestaña <b>Sábados</b> y elige la zona de esta semana. Mantén solo los innegociables.</div>':''}
+        <ul class="chk" data-list="${listId}">${lis}</ul>
+        <div class="barwrap"><div class="bar" data-bar="${listId}"></div></div>
+      </div>`;
+    grid.appendChild(det);
+  });
+  grid.querySelectorAll('.chk').forEach(bindList);
+}
+
+/* ---------- render sábados + timer ---------- */
+let curSat=store.get('curSat',0);
+let timerInt=null, timerSec=0, timerRun=false;
+function renderSatWheel(){
+  const w=document.getElementById('satWheel'); w.innerHTML='';
+  // sábado "actual" estimado por número de semana del mes
+  const weekOfMonth=Math.floor((new Date().getDate()-1)/7)%4;
+  SATS.forEach((s,i)=>{
+    const b=document.createElement('button');
+    b.className='satchip'+(i===curSat?' active':'');
+    b.innerHTML=`${i===weekOfMonth?'<span class="nowtag">esta semana</span>':''}<div class="sn">${s.n}</div><div class="st">${s.t}</div><div class="stime">⏱ ${s.time}</div>`;
+    b.onclick=()=>{curSat=i;store.set('curSat',i);renderSatWheel();renderSatDetail();};
+    w.appendChild(b);
+  });
+}
+function renderSatDetail(){
+  const s=SATS[curSat];
+  const d=document.getElementById('satDetail');
+  const listId='sat'+curSat;
+  let lis=s.steps.map((st,j)=>`<li data-id="s${curSat}_${j}"><span class="box"><svg viewBox="0 0 14 14"><polyline points="2,7 6,11 12,3"/></svg></span><span class="txt">${st}</span></li>`).join('');
+  d.innerHTML=`<div class="card">
+      <h3><span class="dot"></span>${s.t}</h3>
+      <div class="meta">${s.n} · ⏱ ${s.time}</div>
+      <div class="timer">
+        <span class="tdisp" id="tdisp">25:00</span>
+        <button onclick="timerToggle()">▶ / ⏸</button>
+        <button onclick="timerSet(25)">25</button>
+        <button onclick="timerSet(45)">45</button>
+        <button onclick="timerReset()">↺</button>
+        <span class="tlabel">Pomodoro</span>
+      </div>
+      <div class="callout note" style="margin:10px 0"><span class="ct">🧰 Prepara antes de empezar</span>${s.tools}. Ventila, ponte guantes y ten una bolsa de basura a mano.</div>
+      <p style="font-weight:600;margin:6px 0 2px">Checklist en orden</p>
+      <ul class="chk" data-list="${listId}">${lis}</ul>
+      <div class="barwrap"><div class="bar" data-bar="${listId}"></div></div>
+      <div class="callout gold" style="margin-top:12px"><span class="ct">Primero y último</span>Primero: aplica productos que necesitan remojo (inodoro, estufa, filtros). Último: el piso. Entre medio, siempre de arriba hacia abajo.</div>
+    </div>`;
+  d.querySelectorAll('.chk').forEach(bindList);
+  timerReset();
+}
+function fmt(s){return String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0');}
+function timerSet(min){timerSec=min*60;timerRun=false;clearInterval(timerInt);updTimer();}
+function timerReset(){timerSet(25);}
+function updTimer(){const el=document.getElementById('tdisp');if(el)el.textContent=fmt(timerSec);}
+function timerToggle(){
+  if(timerRun){clearInterval(timerInt);timerRun=false;return;}
+  timerRun=true;
+  timerInt=setInterval(()=>{
+    if(timerSec<=0){clearInterval(timerInt);timerRun=false;
+      try{const a=new (window.AudioContext||window.webkitAudioContext)();const o=a.createOscillator();const g=a.createGain();o.connect(g);g.connect(a.destination);o.frequency.value=660;o.start();g.gain.setValueAtTime(.3,a.currentTime);g.gain.exponentialRampToValueAtTime(.001,a.currentTime+1);o.stop(a.currentTime+1);}catch(e){}
+      return;}
+    timerSec--;updTimer();
+  },1000);
+}
+
+/* ---------- tarjeta "hoy" ---------- */
+function refreshToday(){
+  const d=DAYS[todayIdx];
+  document.getElementById('todayName').textContent=d.n;
+  document.getElementById('todayTask').textContent=d.sat?'Limpieza profunda — elige tu zona':d.focus;
+  // progreso = innegociables + tareas del día
+  const sin=store.get('chk_innegociables',{});
+  const sday=store.get('chk_day'+todayIdx,{});
+  const total=5+DAYS[todayIdx].items.length;
+  let done=Object.values(sin).filter(Boolean).length+Object.values(sday).filter(Boolean).length;
+  const pct=Math.round(done/total*100);
+  document.getElementById('todayPct').textContent=pct+'%';
+  const C=163.4;
+  document.getElementById('todayRing').style.strokeDashoffset=C-(C*pct/100);
+}
+
+/* ---------- reset ---------- */
+function resetDay(){
+  if(!confirm('¿Reiniciar todas las marcas del día a día?'))return;
+  store.set('chk_innegociables',{});
+  for(let i=0;i<7;i++)store.set('chk_day'+i,{});
+  document.querySelectorAll('#diaria .chk li.done').forEach(li=>li.classList.remove('done'));
+  document.querySelectorAll('#diaria .chk').forEach(updateBar);
+  refreshToday();
+}
+
+/* ---------- lista de compras ---------- */
+function updateShop(){
+  const lists=document.querySelectorAll('#productos .chk[data-list^="shop_"]');
+  let all=0,done=0;
+  lists.forEach(ul=>{ all+=ul.querySelectorAll('li').length; done+=ul.querySelectorAll('li.done').length; });
+  const bar=document.querySelector('.bar[data-bar="shop_all"]');
+  if(bar) bar.style.width=(all?Math.round(done/all*100):0)+'%';
+  const c=document.getElementById('shopCount');
+  if(c) c.textContent=done+' de '+all+' marcados';
+}
+function resetShop(){
+  if(!confirm('¿Reiniciar la lista de compras?'))return;
+  ['shop_prod','shop_tools','shop_cat'].forEach(k=>store.set('chk_'+k,{}));
+  document.querySelectorAll('#productos .chk li.done').forEach(li=>li.classList.remove('done'));
+  updateShop();
+}
+
+/* ---------- init ---------- */
+document.querySelectorAll('#diaria .chk[data-list="innegociables"]').forEach(bindList);
+document.querySelectorAll('#productos .chk[data-list^="shop_"]').forEach(bindList);
+renderDays();
+renderSatWheel();
+renderSatDetail();
+refreshToday();
+updateShop();
+</script>
+</body>
+</html>
