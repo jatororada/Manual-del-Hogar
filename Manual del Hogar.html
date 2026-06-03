@@ -295,6 +295,36 @@ ul.dotted li::before{content:"";position:absolute;left:2px;top:13px;width:6px;he
 .zone-tip{background:var(--teal-bg);border-left:4px solid var(--teal);border-radius:10px;padding:11px 13px;margin-top:12px;font-size:.85rem}
 .zone-tip b{color:var(--teal)}
 
+/* calendario mensual */
+.cal-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}
+.cal-title{font-family:'Fraunces',serif;font-weight:600;font-size:1.2rem;text-transform:capitalize}
+.cal-nav{display:flex;gap:6px}
+.cal-nav button{width:34px;height:34px;border-radius:10px;border:1px solid var(--line);background:var(--card);cursor:pointer;font-size:1rem;color:var(--ink);transition:.15s}
+.cal-nav button:hover{background:var(--bg2)}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.cal-dow{text-align:center;font-size:.66rem;font-weight:700;letter-spacing:.04em;color:var(--ink-soft);text-transform:uppercase;padding:4px 0}
+.cal-cell{aspect-ratio:1/1.15;border:1px solid var(--line);border-radius:10px;background:var(--card);padding:5px 4px;display:flex;flex-direction:column;overflow:hidden;cursor:pointer;transition:.15s;min-height:0}
+.cal-cell.empty{border:none;background:transparent;cursor:default}
+.cal-cell:not(.empty):hover{box-shadow:var(--shadow);transform:translateY(-1px)}
+.cal-cell .cd{font-size:.74rem;font-weight:700;color:var(--ink);line-height:1}
+.cal-cell .cz{font-size:.56rem;line-height:1.12;color:var(--ink-soft);margin-top:3px;overflow:hidden;flex:1}
+.cal-cell .clvl{margin-top:auto;height:4px;border-radius:3px;width:100%}
+.cal-cell.today{border-color:var(--terracotta);box-shadow:0 0 0 2px rgba(197,104,63,.2)}
+.cal-cell.today .cd{color:var(--terracotta-d)}
+.cal-cell.sat{background:linear-gradient(180deg,var(--gold-bg),var(--card))}
+.cal-cell .ce{font-size:.78rem;text-align:center;margin-top:1px}
+.lv-rapido{background:var(--teal)}
+.lv-normal{background:var(--blue)}
+.lv-profundo{background:var(--terracotta)}
+.cal-legend{display:flex;flex-wrap:wrap;gap:12px;margin:14px 0 4px;font-size:.78rem}
+.cal-legend span{display:inline-flex;align-items:center;gap:5px}
+.cal-legend .sw{width:14px;height:8px;border-radius:3px;display:inline-block}
+.cal-detail{margin-top:14px}
+@media(max-width:560px){
+  .cal-cell .cz{font-size:.5rem}
+  .cal-cell .cd{font-size:.66rem}
+}
+
 /* reset btn */
 .reset{display:block;margin:10px auto 0;background:transparent;border:1px solid var(--line);color:var(--ink-soft);font-family:inherit;font-size:.78rem;padding:7px 14px;border-radius:9px;cursor:pointer;transition:.15s}
 .reset:hover{border-color:var(--rose);color:var(--rose)}
@@ -304,21 +334,26 @@ footer{text-align:center;color:var(--ink-soft);font-size:.78rem;padding:24px 18p
 /* bottom dock (mobile quick) */
 .dock{
   position:fixed;bottom:14px;left:50%;transform:translateX(-50%);
-  background:var(--ink);border-radius:30px;padding:6px;display:flex;gap:2px;
-  box-shadow:var(--shadow-lg);z-index:60
+  background:var(--ink);border-radius:30px;padding:6px;display:flex;gap:1px;
+  box-shadow:var(--shadow-lg);z-index:60;max-width:calc(100vw - 16px)
 }
 .dock button{
   background:transparent;border:none;color:rgba(244,239,230,.6);font-family:inherit;
-  font-size:.7rem;font-weight:600;padding:8px 14px;border-radius:24px;cursor:pointer;
-  display:flex;flex-direction:column;align-items:center;gap:2px;transition:.15s
+  font-size:.68rem;font-weight:600;padding:8px 11px;border-radius:22px;cursor:pointer;
+  display:flex;flex-direction:column;align-items:center;gap:2px;transition:.15s;white-space:nowrap
 }
-.dock button .di{font-size:1.05rem}
+.dock button .di{font-size:1.02rem}
 .dock button.active,.dock button:hover{color:var(--bg);background:rgba(255,255,255,.12)}
 
 @media(max-width:560px){
   .satwheel{grid-template-columns:1fr 1fr}
   .today-card{flex-direction:column;text-align:center}
   .card{padding:16px 16px}
+  .dock button{padding:7px 8px;font-size:.62rem}
+  .dock button .di{font-size:.95rem}
+}
+@media(max-width:380px){
+  .dock button{padding:6px 6px;font-size:.58rem}
 }
 </style>
 </head>
@@ -352,6 +387,7 @@ footer{text-align:center;color:var(--ink-soft);font-size:.78rem;padding:24px 18p
   <div class="inner" id="tabRow">
     <button class="tab active" data-p="inicio"><span class="ic">🏡</span>Inicio</button>
     <button class="tab" data-p="diaria"><span class="ic">⏱️</span>Día a día</button>
+    <button class="tab" data-p="mes"><span class="ic">📅</span>Mes</button>
     <button class="tab" data-p="sabados"><span class="ic">🧽</span>Sábados</button>
     <button class="tab" data-p="zonas"><span class="ic">📍</span>Por zonas</button>
     <button class="tab" data-p="productos"><span class="ic">🧴</span>Productos</button>
@@ -439,6 +475,43 @@ footer{text-align:center;color:var(--ink-soft);font-size:.78rem;padding:24px 18p
     </ul>
   </div>
   <button class="reset" onclick="resetDay()">↺ Reiniciar marcas del día a día</button>
+</section>
+
+<!-- ============ MES ============ -->
+<section class="panel" id="mes">
+  <div class="section-head">
+    <h2 class="serif">Cronograma mensual</h2>
+    <p>Todo el mes de un vistazo: la tarea diaria de cada día y, en los sábados, la zona profunda que toca. Solo para consultar.</p>
+  </div>
+
+  <div class="card">
+    <div class="cal-head">
+      <span class="cal-title" id="calTitle">—</span>
+      <div class="cal-nav">
+        <button onclick="calMove(-1)" aria-label="Mes anterior">‹</button>
+        <button onclick="calToday()" aria-label="Hoy" title="Hoy">•</button>
+        <button onclick="calMove(1)" aria-label="Mes siguiente">›</button>
+      </div>
+    </div>
+    <div class="cal-grid" id="calGrid"></div>
+    <div class="cal-legend">
+      <span><span class="sw lv-rapido"></span> Rápido (diario)</span>
+      <span><span class="sw lv-normal"></span> Normal (semanal)</span>
+      <span><span class="sw lv-profundo"></span> Profundo (sábado)</span>
+    </div>
+  </div>
+
+  <div class="cal-detail" id="calDetail"></div>
+
+  <div class="callout note">
+    <span class="ct">📅 Cómo leer el mes</span>
+    <ul>
+      <li>Cada día tiene su <b>tarea rápida</b> (los innegociables van todos los días, no se dibujan para no saturar).</li>
+      <li>De lunes a viernes la barra es <b style="color:var(--blue)">azul</b>: es el mantenimiento <b>normal</b> rotativo de la semana.</li>
+      <li>Los <b style="color:var(--terracotta-d)">sábados</b> destacan en dorado con la <b>zona profunda</b> que rota cada semana del mes.</li>
+      <li>Toca cualquier día para ver el detalle abajo.</li>
+    </ul>
+  </div>
 </section>
 
 <!-- ============ SÁBADOS ============ -->
@@ -790,8 +863,10 @@ footer{text-align:center;color:var(--ink-soft);font-size:.78rem;padding:24px 18p
 <div class="dock" id="dock">
   <button data-p="inicio" class="active"><span class="di">🏡</span>Inicio</button>
   <button data-p="diaria"><span class="di">⏱️</span>Hoy</button>
+  <button data-p="mes"><span class="di">📅</span>Mes</button>
   <button data-p="sabados"><span class="di">🧽</span>Sábado</button>
   <button data-p="zonas"><span class="di">📍</span>Zonas</button>
+  <button data-p="productos"><span class="di">🧴</span>Productos</button>
 </div>
 <script>
 /* ---------- almacenamiento simple ---------- */
@@ -1008,6 +1083,82 @@ function renderZonas(){
   });
 }
 
+/* ---------- calendario mensual ---------- */
+const MESES=['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+const DOW=['Lun','Mar','Mié','Jue','Vie','Sáb','Dom'];
+let calRef=new Date();
+function calMove(d){ calRef=new Date(calRef.getFullYear(),calRef.getMonth()+d,1); renderCal(); }
+function calToday(){ calRef=new Date(); renderCal(); selectCalDay(new Date()); }
+// índice de SATS coherente con la pestaña Sábados (bloque de 7 días del mes)
+function satIndexForDate(date){
+  return Math.floor((date.getDate()-1)/7)%SATS.length;
+}
+function dayInfoFor(date){
+  const idx=(date.getDay()+6)%7; // 0=Lunes
+  const day=DAYS[idx];
+  if(date.getDay()===6){ // sábado
+    const si=satIndexForDate(date);
+    return {idx, day, sat:SATS[si], satNum:si+1};
+  }
+  return {idx, day, sat:null};
+}
+function renderCal(){
+  const y=calRef.getFullYear(), m=calRef.getMonth();
+  document.getElementById('calTitle').textContent=MESES[m]+' '+y;
+  const grid=document.getElementById('calGrid');
+  let html=DOW.map(d=>`<div class="cal-dow">${d}</div>`).join('');
+  const first=new Date(y,m,1);
+  const lead=(first.getDay()+6)%7; // cuántas celdas vacías antes del día 1
+  const daysInMonth=new Date(y,m+1,0).getDate();
+  for(let i=0;i<lead;i++) html+=`<div class="cal-cell empty"></div>`;
+  const now=new Date();
+  for(let d=1; d<=daysInMonth; d++){
+    const dt=new Date(y,m,d);
+    const info=dayInfoFor(dt);
+    const isToday=dt.toDateString()===now.toDateString();
+    const isSat=dt.getDay()===6;
+    const isSun=dt.getDay()===0;
+    let lvl = isSat?'lv-profundo':(isSun?'lv-rapido':'lv-normal');
+    let label = isSat ? (info.sat? info.sat.t : 'Profundo') : info.day.focus;
+    let emoji = isSat?'🧽':'';
+    html+=`<div class="cal-cell${isToday?' today':''}${isSat?' sat':''}" onclick="selectCalDay(new Date(${y},${m},${d}))">
+      <span class="cd">${d}</span>
+      ${emoji?`<span class="ce">${emoji}</span>`:''}
+      <span class="cz">${label}</span>
+      <span class="clvl ${lvl}"></span>
+    </div>`;
+  }
+  grid.innerHTML=html;
+}
+function selectCalDay(date){
+  const info=dayInfoFor(date);
+  const det=document.getElementById('calDetail');
+  const dd=date.getDate(), mm=MESES[date.getMonth()];
+  const isSat=date.getDay()===6;
+  let body='';
+  if(isSat && info.sat){
+    const s=info.sat;
+    body=`<div class="card" style="background:linear-gradient(180deg,var(--gold-bg),var(--card))">
+      <h3>🧽 ${dd} de ${mm} · ${info.day.n}</h3>
+      <div class="meta">${s.n} — limpieza profunda · ⏱ ${s.time}</div>
+      <p style="font-size:.86rem;margin:6px 0 2px"><b>Zona:</b> ${s.t}</p>
+      <p style="font-size:.84rem;color:var(--ink-soft);margin-bottom:6px">Además, mantén solo los 5 innegociables.</p>
+      <p style="font-size:.82rem"><b>Primeros pasos:</b> ${s.steps.slice(0,3).join(' · ')}…</p>
+      <button class="mini-btn" style="margin-top:10px" onclick="go('sabados')">Ver checklist completo →</button>
+    </div>`;
+  } else {
+    const items=info.day.items.map(it=>`<li data-id="x"><span class="box" style="border-color:var(--line)"></span><span class="txt">${it.t} <span class="pill ${it.p}">${it.p}</span> <i style="color:var(--ink-soft);font-size:.82em">· ${it.m}</i></span></li>`).join('');
+    body=`<div class="card">
+      <h3>📌 ${dd} de ${mm} · ${info.day.n}</h3>
+      <div class="meta">${info.day.focus}</div>
+      <ul class="chk" style="pointer-events:none">${items}</ul>
+      <button class="mini-btn" style="margin-top:6px" onclick="go('diaria')">Ir al día a día →</button>
+    </div>`;
+  }
+  det.innerHTML=body;
+  det.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
 /* ---------- render días ---------- */
 const todayIdx=(new Date().getDay()+6)%7; // 0=Lunes
 function renderDays(){
@@ -1139,6 +1290,7 @@ document.querySelectorAll('#diaria .chk[data-list="innegociables"]').forEach(bin
 document.querySelectorAll('#productos .chk[data-list^="shop_"]').forEach(bindList);
 renderDays();
 renderZonas();
+renderCal();
 renderSatWheel();
 renderSatDetail();
 refreshToday();
