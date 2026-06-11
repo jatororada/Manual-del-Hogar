@@ -294,6 +294,7 @@ ul.dotted li::before{content:"";position:absolute;left:2px;top:13px;width:6px;he
 .prod-chip{font-size:.7rem;background:var(--olive-bg);color:var(--olive-d);padding:3px 9px;border-radius:8px;font-weight:500}
 .zone-tip{background:var(--teal-bg);border-left:4px solid var(--teal);border-radius:10px;padding:11px 13px;margin-top:12px;font-size:.85rem}
 .zone-tip b{color:var(--teal)}
+.zone-when{background:var(--blue-bg);border-radius:10px;padding:9px 12px;margin-top:12px;font-size:.82rem;line-height:1.4}
 
 /* calendario mensual */
 .cal-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}
@@ -447,7 +448,17 @@ footer{text-align:center;color:var(--ink-soft);font-size:.78rem;padding:24px 18p
 <section class="panel" id="diaria">
   <div class="section-head">
     <h2 class="serif">Rutina diaria de 20 minutos</h2>
-    <p>Una base fija de 5 innegociables (≈7 min) más una tarea rotativa según el día. Marca tus tareas: el progreso se guarda solo.</p>
+    <p>Cada día = los 5 innegociables (≈7 min) + la limpieza semanal de la zona que toca ese día. Así cada zona recibe su turno una vez por semana sin que ningún día sea pesado.</p>
+  </div>
+
+  <div class="callout note">
+    <span class="ct">🔄 Cómo encaja todo (importante)</span>
+    <ul>
+      <li><b>Diario</b> = los 5 innegociables, todos los días. Es lo único que se repite a diario.</li>
+      <li><b>Semanal</b> = cada zona tiene <b>su día fijo</b> (lo ves abajo y en cada zona). Eso es la "tarea del día".</li>
+      <li><b>Profundo</b> = los sábados, una zona al mes (pestaña Sábados).</li>
+    </ul>
+    En cada tarea verás un enlace <b style="color:var(--blue)">"ver guía ›"</b> que te lleva al paso a paso completo de esa zona.
   </div>
 
   <div class="card" style="background:linear-gradient(180deg,var(--teal-bg),var(--card))">
@@ -506,8 +517,8 @@ footer{text-align:center;color:var(--ink-soft);font-size:.78rem;padding:24px 18p
   <div class="callout note">
     <span class="ct">📅 Cómo leer el mes</span>
     <ul>
-      <li>Cada día tiene su <b>tarea rápida</b> (los innegociables van todos los días, no se dibujan para no saturar).</li>
-      <li>De lunes a viernes la barra es <b style="color:var(--blue)">azul</b>: es el mantenimiento <b>normal</b> rotativo de la semana.</li>
+      <li>Los <b>5 innegociables</b> van todos los días (no se dibujan en el calendario para no saturar).</li>
+      <li>De lunes a viernes la barra es <b style="color:var(--blue)">azul</b>: es la limpieza <b>semanal</b> de la zona que toca ese día.</li>
       <li>Los <b style="color:var(--terracotta-d)">sábados</b> destacan en dorado con la <b>zona profunda</b> que rota cada semana del mes.</li>
       <li>Toca cualquier día para ver el detalle abajo.</li>
     </ul>
@@ -557,13 +568,13 @@ footer{text-align:center;color:var(--ink-soft);font-size:.78rem;padding:24px 18p
   </div>
 
   <div class="callout note">
-    <span class="ct">📊 Tres niveles en cada zona</span>
+    <span class="ct">📊 Tres niveles en cada zona — cuándo hacer cada uno</span>
     <ul>
-      <li><b style="color:var(--teal)">Rápido</b> — mantenimiento del día a día, pocos minutos.</li>
-      <li><b style="color:var(--blue)">Normal</b> — la limpieza semanal completa de la zona.</li>
-      <li><b style="color:var(--terracotta-d)">Profundo</b> — lo de los sábados: detrás, debajo, dentro y arriba.</li>
+      <li><b style="color:var(--teal)">Diario</b> — el mantenimiento mínimo. Ojo: lo único que se hace en todas las zonas a diario son los <b>5 innegociables</b> (cama, mesón, lavamanos, arenero, recoger). El resto del "diario" de cada zona es opcional, para cuando tengas un minuto extra.</li>
+      <li><b style="color:var(--blue)">Semanal</b> — la limpieza completa de la zona. <b>Cada zona tiene su día fijo</b> de la semana (aparece arriba de cada una). Eso es lo que ves en "Día a día".</li>
+      <li><b style="color:var(--terracotta-d)">Profundo</b> — lo de los sábados: detrás, debajo, dentro y arriba. Rota una zona por sábado (pestaña Sábados).</li>
     </ul>
-    Toca una zona y elige el nivel según el tiempo que tengas.
+    Así nunca hay que limpiar todo el mismo día: cada zona tiene su momento.
   </div>
 
   <div id="zonasContainer"></div>
@@ -875,35 +886,8 @@ const store = {
   set(k,v){ try{localStorage.setItem('hogar_'+k,JSON.stringify(v));}catch(e){} }
 };
 
-/* ---------- datos: días ---------- */
-const DAYS = [
-  {n:'Lunes', focus:'Pisos comunes (nivel rápido)', items:[
-    {t:'Innegociables diarios', m:'7 min', p:'alta'},
-    {t:'Aspirar/barrer sala, comedor y habitaciones (laminado)', m:'8 min', p:'media'},
-    {t:'Mopa CASI seca con jabón neutro solo si hace falta (sigue las lamas)', m:'5 min', p:'media'}]},
-  {n:'Martes', focus:'Baños rápidos', items:[
-    {t:'Innegociables diarios', m:'7 min', p:'alta'},
-    {t:'Sanitarios: bicarbonato + peróxido y cepillo; paño aparte en tapa', m:'6 min', p:'alta'},
-    {t:'Espejo y grifería: agua con ácido cítrico, secar para evitar cal', m:'5 min', p:'media'}]},
-  {n:'Miércoles', focus:'Cocina (nivel rápido)', items:[
-    {t:'Innegociables diarios', m:'7 min', p:'alta'},
-    {t:'Mesón y estufa: paño tibio con jabón neutro (grasa fresca sale fácil)', m:'6 min', p:'media'},
-    {t:'Sacar basura y desinfectar el bote con peróxido', m:'5 min', p:'alta'}]},
-  {n:'Jueves', focus:'Polvo y superficies', items:[
-    {t:'Innegociables diarios', m:'7 min', p:'alta'},
-    {t:'Desempolvar sala y estudio: microfibra SECA primero', m:'8 min', p:'baja'},
-    {t:'Manijas e interruptores (alto contacto) con un toque de peróxido', m:'5 min', p:'media'}]},
-  {n:'Viernes', focus:'Ropa y reset', items:[
-    {t:'Innegociables diarios', m:'7 min', p:'alta'},
-    {t:'Carga de lavadora: detergente sin fragancia + percarbonato (agua tibia)', m:'5 min', p:'media'},
-    {t:'Reset de superficies: dejar la casa despejada para el finde', m:'8 min', p:'media'}]},
-  {n:'Sábado', focus:'Limpieza profunda', sat:true, items:[
-    {t:'Solo innegociables — hoy toca el sábado profundo', m:'7 min', p:'alta'}]},
-  {n:'Domingo', focus:'Ligero y preparación', items:[
-    {t:'Innegociables diarios', m:'7 min', p:'alta'},
-    {t:'Arenero: cambio total y lavado con jabón neutro (sin cloro ni aromas)', m:'8 min', p:'alta'},
-    {t:'Planear comidas y dejar ropa lista para el lunes', m:'5 min', p:'baja'}]}
-];
+/* ---------- datos: días (se generan desde ZONAS más abajo) ---------- */
+let DAYS = [];
 
 /* ---------- datos: sábados ---------- */
 const SATS = [
@@ -950,7 +934,7 @@ function updateBar(ul){
 
 /* ===================== GUÍAS POR ZONA (3 niveles) ===================== */
 const ZONAS = [
-  {id:'z_laminado', ic:'🪵', bg:'#F6ECD4', name:'Pisos laminados', sub:'Sala, comedor y las tres habitaciones · el enemigo nº1 es el agua',
+  {id:'z_laminado', ic:'🪵', bg:'#F6ECD4', name:'Pisos laminados', dia:1, sabado:null, sub:'Sala, comedor y las tres habitaciones · el enemigo nº1 es el agua',
    warn:'El laminado es una capa decorativa sobre un núcleo de fibra que se hincha de forma IRREVERSIBLE si entra agua por las juntas. Mopa apenas húmeda, nunca mojada, y nunca charcos.',
    niveles:{
      rapido:{time:'5 min', prod:['Aspiradora o escoba','Mopa de microfibra'],
@@ -961,7 +945,7 @@ const ZONAS = [
        steps:['Todo lo del modo normal, más:','Mueve los muebles ligeros y limpia debajo (ahí se acumula pelo de gato y polvo).','Marcas de zapato o goma: borrador de melamina apenas húmedo, frotando suave.','Revisa si hay lamas levantadas o hinchadas: es señal de daño por agua, ojo con la fuente de humedad.','Pasa un paño por los rodapiés de toda la zona.','Aprovecha para poner o revisar los fieltros bajo las patas de los muebles.']}},
    tip:'Quitarse los zapatos dentro de casa + tapetes en las entradas es lo que más prolonga la vida del laminado. Y nunca arrastres muebles: levántalos.'},
 
-  {id:'z_baldosa', ic:'◻️', bg:'#E0E8EE', name:'Pisos de baldosa', sub:'Cocina y baños · resistente al agua; el punto débil son las juntas',
+  {id:'z_baldosa', ic:'◻️', bg:'#E0E8EE', name:'Pisos de baldosa', dia:null, sabado:null, sub:'Cocina y baños · resistente al agua; el punto débil son las juntas',
    niveles:{
      rapido:{time:'4 min', prod:['Escoba o aspiradora'],
        steps:['Barre o aspira el pelo de gato y las migas.','Si hay una zona pegajosa o sucia, pásale la mopa húmeda solo ahí.']},
@@ -971,7 +955,7 @@ const ZONAS = [
        steps:['Todo lo del modo normal, más:','JUNTAS (mensual): pasta de bicarbonato sobre las juntas, frota con cepillo, rocía un poco de peróxido, espera 10 min y enjuaga. Devuelve el color sin cloro.','Juntas con cal: ácido cítrico diluido (50 g por 500 ml de agua), dejar 5 min, frotar y enjuagar.','SELLADOR DE JUNTAS (cada 6 meses): tras limpiarlas a fondo, aplica sellador. Protege el color y evita que se ensucien tan rápido.','Mueve electrodomésticos si puedes y limpia debajo (polvo y pelo acumulado).','Paño húmedo en los rincones donde no llega bien la mopa.']}},
    tip:'El bicarbonato + peróxido reemplaza al cloro en las juntas: igual de eficaz contra el moho, pero sin riesgo para el gato una vez seco. Nunca mezcles peróxido y vinagre en un envase cerrado.'},
 
-  {id:'z_banos', ic:'🚿', bg:'#E0E8EE', name:'Baños (×2)', sub:'Ducha, sanitario, lavamanos, espejo, grifería, paredes, piso',
+  {id:'z_banos', ic:'🚿', bg:'#E0E8EE', name:'Baños (×2)', dia:2, sabado:2, sub:'Ducha, sanitario, lavamanos, espejo, grifería, paredes, piso',
    warn:'Orden siempre de arriba hacia abajo y de limpio a sucio: espejo primero, sanitario y piso al final, para no contaminar lo ya limpio.',
    niveles:{
      rapido:{time:'8 min por baño', prod:['Escobilla de goma','Bicarbonato','Paño de microfibra','Peróxido 3%'],
@@ -982,7 +966,7 @@ const ZONAS = [
        steps:['Todo lo del modo normal, más:','CAL EN MAMPARA (bisagras y marco): ácido cítrico, dejar 10 min. Sarro muy incrustado: pasta de bicarbonato y frota; para el cristal, no uses nada que raye.','JUNTAS DE AZULEJO: bicarbonato + peróxido con cepillo, dejar 5–10 min, frotar y enjuagar.','MOHO EN LA GOMA/SILICONA: peróxido de hidrógeno puntual, dejar actuar, ventilando. Si la silicona está negra por dentro, hay que cambiarla.','ALCACHOFA DE DUCHA: si tiene cal, desmóntala y sumérgela en ácido cítrico 15–30 min.','DETRÁS Y DEBAJO DEL SANITARIO: guantes + paño con peróxido. Zona ignorada que acumula bacterias.','EXTRACTOR DE VENTILACIÓN: paño húmedo o aspiradora pequeña.','Sarro del sanitario: piedra pómez de baño — no raya la porcelana.']}},
    tip:'La rutina de 30 segundos más valiosa: pasar el escurridor de goma por la mampara después de CADA ducha. Elimina casi todo el trabajo semanal de cal.'},
 
-  {id:'z_cocina', ic:'🍳', bg:'#F6ECD4', name:'Cocina y zona de lavado', sub:'Estufa, mesones, microondas, nevera, campana, lavadora, piso',
+  {id:'z_cocina', ic:'🍳', bg:'#F6ECD4', name:'Cocina y zona de lavado', dia:3, sabado:1, sub:'Estufa, mesones, microondas, nevera, campana, lavadora, piso',
    niveles:{
      rapido:{time:'10 min', prod:['Paño húmedo','Jabón neutro de losa','Escoba'],
        steps:['Paño tibio con unas gotas de jabón en el mesón — secar.','Pasa el paño por la estufa si hay restos frescos (en tibio salen fácil).','Lava o carga la loza del fregadero.','Escoba rápida por el piso — pelo de gato y migas.']},
@@ -992,7 +976,7 @@ const ZONAS = [
        steps:['Todo lo del modo normal, más:','INTERIOR NEVERA: saca todo, limpia estantes con agua + bicarbonato (nada de químicos fuertes cerca de alimentos), revisa vencimientos, deja un recipiente con bicarbonato para olores y revisa los sellos de la puerta.','CAMPANA EXTRACTORA: filtros metálicos a remojo 30 min en agua caliente + desengrasante; limpia el exterior.','EMPAQUES DE GOMA: cepillo de dientes con peróxido contra el moho.','LAVADORA: ciclo en caliente vacío con ácido cítrico (½ taza) para limpiar el tambor; lava el cajón del detergente aparte; deja la puerta abierta tras usarla.','DESAGÜE DEL FREGADERO: bicarbonato + agua hirviendo (desodoriza y desincrusta).','BAJO LA NEVERA Y LA LAVADORA: mueve si puedes y limpia esa zona que acumula polvo y pelo.','JUNTAS DEL PISO (mensual): bicarbonato + peróxido con cepillo.']}},
    tip:'La clave de la cocina: el desengrasante NECESITA tiempo de contacto. Aplica, espera ~60 segundos y luego frota sin esfuerzo, en vez de tallar de inmediato.'},
 
-  {id:'z_sala', ic:'🛋️', bg:'#D6EFEA', name:'Sala y comedor', sub:'Sofá, muebles, TV, mesa, sillas, paredes, ventanas, piso laminado',
+  {id:'z_sala', ic:'🛋️', bg:'#D6EFEA', name:'Sala y comedor', dia:4, sabado:4, sub:'Sofá, muebles, TV, mesa, sillas, paredes, ventanas, piso laminado',
    niveles:{
      rapido:{time:'8 min', prod:['Rodillo quitapelusas','Paño de microfibra seco'],
        steps:['Rodillo quitapelusas en el sofá (las zonas favoritas del gato).','Paño seco en la TV y la mesa de centro.','Cojines y mantas a su lugar.']},
@@ -1002,7 +986,7 @@ const ZONAS = [
        steps:['Todo lo del modo normal, más:','SOFÁ PROFUNDO: aspira con el accesorio de tapicería los pliegues, bajo los cojines y las costuras; lava las fundas si se pueden.','BAJO LOS MUEBLES: mueve sofá, mesa y sillas y aspira — ahí se acumula muchísimo pelo de gato.','RODAPIÉS COMPLETOS: paño húmedo en todos.','VENTANAS EXTERIORES (si alcanzas con seguridad): cristal y marco.','MANCHAS EN PAREDES: borrador de melamina, frotar suave, sin agua extra.','LAMINADO PROFUNDO: mueve muebles ligeros y limpia debajo; manchas puntuales solo en la mancha.']}},
    tip:'Con gato, aspirar el laminado de la sala 2–3 veces por semana es más eficiente que trapear: el pelo se ve mucho y lo levantas en 3 minutos.'},
 
-  {id:'z_hab', ic:'🛏️', bg:'#F0E6F2', name:'Habitaciones (×3)', sub:'Cama, colchón, clósets, mesitas, paredes, ventanas, piso laminado',
+  {id:'z_hab', ic:'🛏️', bg:'#F0E6F2', name:'Habitaciones (×3)', dia:5, sabado:3, sub:'Cama, colchón, clósets, mesitas, paredes, ventanas, piso laminado',
    niveles:{
      rapido:{time:'5 min por habitación', prod:['Paño de microfibra seco'],
        steps:['Haz o arregla la cama.','Paño seco en la mesita de noche.','Ropa sucia a la cesta (si hay en el suelo).']},
@@ -1012,7 +996,7 @@ const ZONAS = [
        steps:['Todo lo del modo normal, más:','COLCHÓN (mensual): aspira ambos lados con el accesorio de tapicería, rótalo 180°, airéalo 30 min.','BAJO LA CAMA: aspira a fondo — suele ser la mayor acumulación de pelo y polvo de la casa.','INTERIOR DEL CLÓSET (mensual, en rotación): reorganiza, dobla en vertical, saca lo que no usas; renueva el gel de sílice o carbón contra la humedad.','PARTE SUPERIOR DEL CLÓSET: paño húmedo (acumula polvo que cae al abrir).','RODAPIÉS Y RINCONES: paño húmedo en todos.','MANCHAS EN PAREDES: borrador de melamina suave.']}},
    tip:'Con gato, el pelo se acumula sobre todo bajo la cama y en los rodapiés. Aspirar esas dos zonas 2–3 veces por semana toma 2 minutos y mantiene el polvo a raya.'},
 
-  {id:'z_gato', ic:'🐱', bg:'#D6EFEA', name:'Zona del gato', sub:'Arenero, comida, agua, pelo y control en toda la casa',
+  {id:'z_gato', ic:'🐱', bg:'#D6EFEA', name:'Zona del gato', dia:7, sabado:null, sub:'Arenero, comida, agua, pelo y control en toda la casa',
    warn:'Nada de cloro, aromas fuertes, cítricos ni aceites esenciales: además de tóxicos, hacen que el gato deje de usar la caja. Productos sin perfume y enjuague abundante.',
    niveles:{
      rapido:{time:'5 min diarios', prod:['Pala de arena','Jabón neutro sin perfume'],
@@ -1023,7 +1007,7 @@ const ZONAS = [
        steps:['ARENERO PROFUNDO: revisa manchas en las paredes de la caja; si desinfectas con peróxido, ENJUAGA muy bien y seca antes de devolver la arena.','CAMA DEL GATO: lávala en lavadora a 40 °C (sin suavizante perfumado); seca por completo.','RASCADOR: aspira a fondo entre las fibras; revisa si está muy desgastado.','JUGUETES: los de tela a la lavadora; los de plástico con agua caliente y jabón.','CEPILLADO PROFUNDO: sesión larga con cepillo tipo FURminator — después suelta mucho menos pelo durante días.','BAJO LOS MUEBLES: aspira debajo del sofá, la cama y los clósets.']}},
    tip:'Cepillar al gato 3 veces por semana reduce el pelo en casa hasta un 60%. Es la acción más efectiva que existe, más que cualquier limpieza reactiva.'},
 
-  {id:'z_lavanderia', ic:'👕', bg:'#F6ECD4', name:'Lavandería y textiles', sub:'Lavadora, ropa de cama, toallas y ropa personal',
+  {id:'z_lavanderia', ic:'👕', bg:'#F6ECD4', name:'Lavandería y textiles', dia:5, sabado:null, sub:'Lavadora, ropa de cama, toallas y ropa personal',
    niveles:{
      rapido:{time:'2 min', prod:['Detergente sin fragancia'],
        steps:['Que no haya ropa fuera de la cesta — a la cesta siempre.','Si la cesta está llena, lanza una carga (5 min de cargar, la lavadora hace el resto).']},
@@ -1034,27 +1018,75 @@ const ZONAS = [
    tip:'La regla de la ropa: nunca al suelo, siempre a la cesta. Y el exceso de jabón es la causa nº1 de ropa que huele a encerrado — usa la dosis justa + el percarbonato.'}
 ];
 
+/* ---------- generar DÍAS desde las zonas (una sola fuente de verdad) ---------- */
+function buildDays(){
+  const NOM=['','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado','Domingo'];
+  const arr=[];
+  for(let d=1; d<=7; d++){
+    if(d===6){ // sábado
+      arr.push({n:'Sábado', dia:6, focus:'Limpieza profunda (ver Sábados)', sat:true,
+        items:[{t:'Solo los 5 innegociables — hoy toca el sábado profundo', m:'7 min', p:'alta'}]});
+      continue;
+    }
+    // zonas que tienen este día asignado
+    const zs = ZONAS.filter(z=>z.dia===d);
+    const items=[{t:'Los 5 innegociables', m:'7 min', p:'alta'}];
+    let focusParts=[];
+    zs.forEach(z=>{
+      focusParts.push(z.name.replace(/\s*\(.*\)/,''));
+      // tomar los 2 pasos más representativos del nivel semanal
+      const nv = z.niveles.normal || z.niveles.rapido;
+      const t = nv.time;
+      // resumen corto: primeros pasos clave
+      const resumen = z.id==='z_laminado' ? 'Aspirar y mopa casi seca con jabón neutro (sigue las lamas)'
+        : z.id==='z_banos' ? 'Baños: sanitario con bicarbonato+peróxido, cal con ácido cítrico, piso al final'
+        : z.id==='z_cocina' ? 'Cocina: desengrasante de bicarbonato en mesón y estufa, fregadero y piso'
+        : z.id==='z_sala' ? 'Sala: polvo con microfibra seca, aspirar sofá y laminado'
+        : z.id==='z_hab' ? 'Habitaciones: cambiar sábanas, polvo, aspirar bajo la cama y laminado'
+        : z.id==='z_lavanderia' ? 'Lavadora: detergente sin fragancia + percarbonato (agua tibia); tender'
+        : z.id==='z_gato' ? 'Gato a fondo: arenero completo con jabón neutro, aspirar pelo, cepillar'
+        : (nv.steps[0]||'');
+      items.push({t:resumen+' — limpieza semanal', m:t, p: (z.id==='z_banos'||z.id==='z_gato')?'alta':'media', zona:z.id});
+    });
+    let focus = focusParts.length? focusParts.join(' + ')+' (semanal)' : 'Mantenimiento ligero';
+    // domingo: añadir preparación
+    if(d===7){ items.push({t:'Planear comidas y dejar ropa lista para el lunes', m:'5 min', p:'baja'}); }
+    arr.push({n:NOM[d], dia:d, focus, items});
+  }
+  return arr;
+}
+DAYS = buildDays();
+
 function renderZonas(){
   const cont = document.getElementById('zonasContainer');
   if(!cont) return;
-  const lvlNames = {rapido:'Rápido', normal:'Normal', profundo:'Profundo'};
-  const lvlSub = {rapido:'día a día', normal:'semanal', profundo:'sábado'};
+  const DIAS_SEM=['','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado','Domingo'];
+  const lvlNames = {rapido:'Diario', normal:'Semanal', profundo:'Profundo'};
+  const lvlSub = {rapido:'cada día', normal:'su día fijo', profundo:'sábado'};
   cont.innerHTML = ZONAS.map(z=>{
-    const panes = ['rapido','normal','profundo'].map((lv,i)=>{
+    // por defecto se abre el nivel "semanal" (normal), que es el más consultado
+    const order = ['rapido','normal','profundo'];
+    const panes = order.map((lv)=>{
       const d = z.niveles[lv];
       if(!d) return '';
       const chips = d.prod.map(p=>`<span class="prod-chip">${p}</span>`).join('');
       const steps = d.steps.map(s=>`<li>${s}</li>`).join('');
-      return `<div class="lvl-pane${i===0?' active':''}" data-pane="${lv}">
+      return `<div class="lvl-pane${lv==='normal'?' active':''}" data-pane="${lv}">
         <div class="lvl-meta"><span class="lvl-time">⏱ ${d.time}</span></div>
         <div class="prod-chips">${chips}</div>
         <ol class="steps">${steps}</ol>
       </div>`;
     }).join('');
-    const btns = ['rapido','normal','profundo'].map((lv,i)=>
-      `<button class="lvl-btn${i===0?' active':''}" data-l="${lv}"><span>${lvlNames[lv]}</span><span class="lt">${lvlSub[lv]}</span></button>`
+    const btns = order.map((lv)=>
+      `<button class="lvl-btn${lv==='normal'?' active':''}" data-l="${lv}"><span>${lvlNames[lv]}</span><span class="lt">${lvlSub[lv]}</span></button>`
     ).join('');
     const warn = z.warn ? `<div class="callout warn" style="margin-top:12px"><span class="ct">⚠️ Clave de esta zona</span>${z.warn}</div>` : '';
+    // línea de cuándo hacerla
+    let cuando='';
+    if(z.dia){ cuando=`<b style="color:var(--blue)">Semanal:</b> ${DIAS_SEM[z.dia]}`; }
+    else { cuando=`<b style="color:var(--blue)">Semanal:</b> junto con cocina y baños`; }
+    if(z.sabado){ cuando+=` &nbsp;·&nbsp; <b style="color:var(--terracotta-d)">Profundo:</b> Sábado ${z.sabado} del mes`; }
+    const cuandoBox=`<div class="zone-when">📌 ${cuando}</div>`;
     return `<details class="zone" id="${z.id}">
       <summary>
         <span class="zhead-ic" style="background:${z.bg}">${z.ic}</span>
@@ -1062,6 +1094,7 @@ function renderZonas(){
         <span class="chev">›</span>
       </summary>
       <div class="zbody">
+        ${cuandoBox}
         ${warn}
         <div class="levels">${btns}</div>
         ${panes}
@@ -1170,7 +1203,10 @@ function renderDays(){
     det.className='daycard'+(isToday?' is-today':'');
     if(isToday) det.open=true;
     const listId='day'+i;
-    let lis=d.items.map((it,j)=>`<li data-id="d${i}_${j}"><span class="box"><svg viewBox="0 0 14 14"><polyline points="2,7 6,11 12,3"/></svg></span><span class="txt">${it.t} <span class="pill ${it.p}">${it.p}</span> <i style="color:var(--ink-soft);font-size:.82em">· ${it.m}</i></span></li>`).join('');
+    let lis=d.items.map((it,j)=>{
+      const link = it.zona ? ` <a href="#" onclick="event.preventDefault();event.stopPropagation();openZona('${it.zona}')" style="color:var(--blue);font-size:.82em;white-space:nowrap">ver guía ›</a>` : '';
+      return `<li data-id="d${i}_${j}"><span class="box"><svg viewBox="0 0 14 14"><polyline points="2,7 6,11 12,3"/></svg></span><span class="txt">${it.t} <span class="pill ${it.p}">${it.p}</span> <i style="color:var(--ink-soft);font-size:.82em">· ${it.m}</i>${link}</span></li>`;
+    }).join('');
     det.innerHTML=`<summary>
         <span class="dnum">${d.n.slice(0,3)}</span>
         <span><span class="dtitle">${d.n}</span><br><span class="dfocus">${d.focus}</span></span>
@@ -1185,6 +1221,14 @@ function renderDays(){
     grid.appendChild(det);
   });
   grid.querySelectorAll('.chk').forEach(bindList);
+}
+// abre la pestaña Zonas y despliega una zona concreta
+function openZona(id){
+  go('zonas');
+  setTimeout(()=>{
+    const z=document.getElementById(id);
+    if(z){ z.open=true; z.scrollIntoView({behavior:'smooth',block:'start'}); }
+  },120);
 }
 
 /* ---------- render sábados + timer ---------- */
@@ -1247,12 +1291,17 @@ function refreshToday(){
   const d=DAYS[todayIdx];
   document.getElementById('todayName').textContent=d.n;
   document.getElementById('todayTask').textContent=d.sat?'Limpieza profunda — elige tu zona':d.focus;
-  // progreso = innegociables + tareas del día
+  // progreso = 5 innegociables + tareas del día (excepto el recordatorio de innegociables, que es el primer item)
   const sin=store.get('chk_innegociables',{});
   const sday=store.get('chk_day'+todayIdx,{});
-  const total=5+DAYS[todayIdx].items.length;
-  let done=Object.values(sin).filter(Boolean).length+Object.values(sday).filter(Boolean).length;
-  const pct=Math.round(done/total*100);
+  const extraItems=Math.max(0, DAYS[todayIdx].items.length-1); // -1: el primer item es "Los 5 innegociables"
+  const total=5+extraItems;
+  const doneIn=Object.values(sin).filter(Boolean).length;
+  // contar tareas del día marcadas, pero ignorar el item 0 (recordatorio)
+  let doneDay=0;
+  Object.keys(sday).forEach(k=>{ if(sday[k] && k!=='d'+todayIdx+'_0') doneDay++; });
+  const done=Math.min(total, doneIn+doneDay);
+  const pct=total?Math.round(done/total*100):0;
   document.getElementById('todayPct').textContent=pct+'%';
   const C=163.4;
   document.getElementById('todayRing').style.strokeDashoffset=C-(C*pct/100);
