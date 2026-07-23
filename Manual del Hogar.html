@@ -6,130 +6,131 @@
 <title>Manual del Hogar</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#f4efe6;
-  --bg2:#ece4d6;
-  --card:#fffaf2;
-  --ink:#2b2620;
-  --ink-soft:#6f655a;
-  --line:#e2d8c8;
-  --terracotta:#c5683f;
-  --terracotta-d:#a8542f;
-  --olive:#5f7355;
-  --olive-d:#4a5b42;
-  --teal:#357066;
-  --gold:#c79a3e;
-  --rose:#b8504f;
-  --rose-bg:#f6e3df;
-  --olive-bg:#e6ebe0;
-  --teal-bg:#ddeeea;
-  --gold-bg:#f6ecd4;
-  --blue-bg:#e0e8ee;
-  --blue:#3f6079;
-  --radius:18px;
-  --shadow:0 1px 2px rgba(60,45,30,.04),0 8px 24px rgba(80,60,35,.08);
-  --shadow-lg:0 10px 40px rgba(80,60,35,.14);
+  --bg:#f2efe9;
+  --bg2:#e8e3d9;
+  --card:#faf8f4;
+  --ink:#211f1c;
+  --ink-soft:#736d64;
+  --line:#ded8cc;
+  --terracotta:#3c332a;
+  --terracotta-d:#2a241d;
+  --olive:#2a241d;
+  --olive-d:#211f1c;
+  --teal:#5a6b5d;
+  --gold:#a89170;
+  --rose:#8c5b52;
+  --rose-bg:#efe6e0;
+  --olive-bg:#e6e5dc;
+  --teal-bg:#e4e8e2;
+  --gold-bg:#efe9dd;
+  --blue-bg:#e5e6e6;
+  --blue:#4a5560;
+  --radius:6px;
+  --shadow:0 1px 2px rgba(40,35,28,.03),0 6px 20px rgba(60,50,38,.05);
+  --shadow-lg:0 10px 40px rgba(60,50,38,.10);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{
-  font-family:'Outfit',sans-serif;
+  font-family:'Jost',sans-serif;
   background:var(--bg);
   color:var(--ink);
-  line-height:1.6;
+  line-height:1.65;
   -webkit-font-smoothing:antialiased;
-  background-image:radial-gradient(circle at 12% 18%,rgba(197,104,63,.05),transparent 40%),radial-gradient(circle at 88% 8%,rgba(95,115,85,.06),transparent 38%);
   background-attachment:fixed;
-  padding-bottom:90px;
+  padding-bottom:20px;
 }
-h1,h2,h3,.serif{font-family:'Fraunces',serif}
+h1,h2,h3,.serif{font-family:'Playfair Display',serif}
 
 /* ---------- HEADER ---------- */
 header{
-  padding:34px 22px 26px;
+  padding:42px 22px 30px;
   text-align:center;
   position:relative;
   overflow:hidden;
 }
 header .eyebrow{
-  font-size:.72rem;letter-spacing:.32em;text-transform:uppercase;
-  color:var(--terracotta);font-weight:600;margin-bottom:10px;
+  font-size:.66rem;letter-spacing:.34em;text-transform:uppercase;
+  color:var(--ink-soft);font-weight:400;margin-bottom:16px;
 }
 header h1{
-  font-size:clamp(2rem,7vw,3.1rem);font-weight:700;line-height:1.04;
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2.1rem,7.5vw,3.4rem);font-weight:400;line-height:1.08;
   color:var(--ink);letter-spacing:-.01em;
 }
-header h1 em{font-style:italic;color:var(--terracotta)}
+header h1 em{font-style:italic;color:var(--ink);font-weight:500}
 header p.sub{
-  margin-top:12px;color:var(--ink-soft);font-size:.96rem;max-width:520px;
-  margin-left:auto;margin-right:auto;
+  margin-top:16px;color:var(--ink-soft);font-size:.9rem;max-width:500px;
+  margin-left:auto;margin-right:auto;font-weight:300;line-height:1.7;
 }
 .crest{
-  width:46px;height:46px;margin:0 auto 14px;border-radius:50%;
-  background:linear-gradient(135deg,var(--terracotta),var(--gold));
-  display:grid;place-items:center;box-shadow:var(--shadow);
-  font-family:'Fraunces',serif;color:#fff;font-size:1.5rem;font-weight:600;
+  width:40px;height:40px;margin:0 auto 18px;border-radius:50%;
+  background:var(--ink);
+  display:grid;place-items:center;
+  font-family:'Playfair Display',serif;color:var(--bg);font-size:1.2rem;font-weight:400;font-style:italic;
 }
 
 /* ---------- PROGRESS RIBBON ---------- */
 .today-card{
-  max-width:680px;margin:6px auto 0;background:var(--card);
+  max-width:640px;margin:26px auto 0;background:var(--card);
   border:1px solid var(--line);border-radius:var(--radius);
-  box-shadow:var(--shadow);padding:18px 20px;
-  display:flex;align-items:center;gap:16px;
+  box-shadow:none;padding:20px 22px;
+  display:flex;align-items:center;gap:18px;
 }
 .today-card .ring{flex:0 0 auto}
 .today-card .info{flex:1;min-width:0}
-.today-card .info .label{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft)}
-.today-card .info .day{font-family:'Fraunces',serif;font-size:1.3rem;font-weight:600;color:var(--ink);line-height:1.15}
-.today-card .info .task{font-size:.86rem;color:var(--ink-soft);margin-top:2px}
+.today-card .info .label{font-size:.64rem;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-soft);font-weight:400}
+.today-card .info .day{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:400;color:var(--ink);line-height:1.2;margin-top:3px}
+.today-card .info .task{font-size:.82rem;color:var(--ink-soft);margin-top:3px;font-weight:300}
 .mini-btn{
-  background:var(--olive);color:#fff;border:none;border-radius:10px;
-  padding:9px 14px;font-family:inherit;font-size:.8rem;font-weight:600;
-  cursor:pointer;white-space:nowrap;transition:.2s;
+  background:var(--ink);color:var(--bg);border:none;border-radius:100px;
+  padding:11px 20px;font-family:inherit;font-size:.76rem;font-weight:400;
+  cursor:pointer;white-space:nowrap;transition:.25s;letter-spacing:.02em;
 }
-.mini-btn:hover{background:var(--olive-d)}
+.mini-btn:hover{background:var(--terracotta)}
 
 /* ---------- NAV TABS ---------- */
 nav.tabs{
-  position:sticky;top:0;z-index:50;background:rgba(244,239,230,.86);
-  backdrop-filter:blur(10px);border-bottom:1px solid var(--line);
-  margin-top:24px;
+  position:sticky;top:0;z-index:50;background:rgba(242,239,233,.92);
+  backdrop-filter:blur(12px);border-bottom:1px solid var(--line);
+  margin-top:30px;
 }
 nav.tabs .inner{
-  max-width:920px;margin:0 auto;display:flex;gap:4px;overflow-x:auto;
-  padding:8px 12px;scrollbar-width:none;
+  max-width:920px;margin:0 auto;display:flex;gap:2px;overflow-x:auto;
+  padding:9px 12px;scrollbar-width:none;
 }
 nav.tabs .inner::-webkit-scrollbar{display:none}
 .tab{
   flex:0 0 auto;border:none;background:transparent;font-family:inherit;
-  font-size:.84rem;font-weight:500;color:var(--ink-soft);
-  padding:9px 14px;border-radius:11px;cursor:pointer;transition:.18s;
-  display:flex;align-items:center;gap:7px;white-space:nowrap;
+  font-size:.8rem;font-weight:400;color:var(--ink-soft);
+  padding:9px 15px;border-radius:100px;cursor:pointer;transition:.22s;
+  display:flex;align-items:center;gap:7px;white-space:nowrap;letter-spacing:.01em;
 }
-.tab .ic{font-size:1rem}
-.tab:hover{background:var(--bg2);color:var(--ink)}
+.tab .ic{font-size:.95rem}
+.tab:hover{color:var(--ink)}
 .tab.active{background:var(--ink);color:var(--bg)}
 
 /* ---------- LAYOUT ---------- */
-main{max-width:920px;margin:0 auto;padding:28px 18px 40px}
+main{max-width:920px;margin:0 auto;padding:34px 18px 40px}
 .panel{display:none;animation:fade .4s ease}
 .panel.active{display:block}
 @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-.section-head{margin-bottom:18px}
-.section-head h2{font-size:1.7rem;font-weight:700;letter-spacing:-.01em}
-.section-head p{color:var(--ink-soft);font-size:.94rem;margin-top:4px;max-width:640px}
+.section-head{margin-bottom:24px}
+.section-head h2{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,5vw,2.4rem);font-weight:400;letter-spacing:-.01em;line-height:1.15}
+.section-head h2 em{font-style:italic}
+.section-head p{color:var(--ink-soft);font-size:.9rem;margin-top:10px;max-width:600px;font-weight:300;line-height:1.7}
 
 /* ---------- CARDS ---------- */
 .card{
   background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
-  box-shadow:var(--shadow);padding:20px 22px;margin-bottom:16px;
+  box-shadow:none;padding:24px 24px;margin-bottom:14px;
 }
-.card h3{font-size:1.18rem;font-weight:600;margin-bottom:4px;display:flex;align-items:center;gap:9px}
-.card h3 .dot{width:9px;height:9px;border-radius:50%;background:var(--terracotta);flex:0 0 auto}
-.card .meta{font-size:.78rem;color:var(--ink-soft);margin-bottom:12px}
+.card h3{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:400;margin-bottom:6px;display:flex;align-items:center;gap:9px;line-height:1.25}
+.card h3 .dot{width:5px;height:5px;border-radius:50%;background:var(--ink);flex:0 0 auto}
+.card .meta{font-size:.76rem;color:var(--ink-soft);margin-bottom:14px;font-weight:300}
 
 /* accordion */
 .acc{border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:10px;background:var(--card)}
@@ -143,11 +144,11 @@ main{max-width:920px;margin:0 auto;padding:28px 18px 40px}
 .acc>summary .emoji{font-size:1.2rem}
 .acc>summary:hover{background:var(--bg2)}
 .acc .body{padding:2px 18px 18px;border-top:1px solid var(--line)}
-.acc .body p{margin:10px 0;font-size:.92rem;color:var(--ink)}
+.acc .body p{margin:10px 0;font-size:.9rem;color:var(--ink);font-weight:300}
 
 /* callouts */
-.callout{border-radius:14px;padding:14px 16px;margin:12px 0;border-left:5px solid;font-size:.9rem}
-.callout .ct{font-weight:600;display:block;margin-bottom:4px;font-size:.92rem}
+.callout{border-radius:var(--radius);padding:16px 18px;margin:14px 0;border-left:2px solid;font-size:.87rem;font-weight:300;line-height:1.65}
+.callout .ct{font-weight:500;display:block;margin-bottom:6px;font-size:.88rem;letter-spacing:.01em}
 .callout.warn{background:var(--rose-bg);border-color:var(--rose)}
 .callout.warn .ct{color:var(--rose)}
 .callout.tip{background:var(--teal-bg);border-color:var(--teal)}
@@ -156,31 +157,34 @@ main{max-width:920px;margin:0 auto;padding:28px 18px 40px}
 .callout.note .ct{color:var(--blue)}
 .callout.gold{background:var(--gold-bg);border-color:var(--gold)}
 .callout.gold .ct{color:var(--terracotta-d)}
-.callout ul{margin:6px 0 0 18px}
-.callout li{margin:4px 0}
+.callout ul{margin:8px 0 0 16px}
+.callout li{margin:5px 0}
 
-/* lists */
-.steps{counter-reset:s;list-style:none;margin:8px 0}
-.steps li{counter-increment:s;position:relative;padding:6px 0 6px 38px;font-size:.92rem}
-.steps li::before{
-  content:counter(s);position:absolute;left:0;top:5px;width:25px;height:25px;
-  background:var(--olive-bg);color:var(--olive-d);border-radius:50%;
-  display:grid;place-items:center;font-size:.78rem;font-weight:700;font-family:'Outfit'
+/* lists — estilo editorial numerado */
+.steps{counter-reset:s;list-style:none;margin:10px 0}
+.steps li{
+  counter-increment:s;position:relative;padding:13px 0 13px 46px;font-size:.88rem;
+  border-top:1px solid var(--line);font-weight:300;line-height:1.6;
 }
-ul.dotted{list-style:none;margin:6px 0}
-ul.dotted li{position:relative;padding:4px 0 4px 18px;font-size:.92rem}
-ul.dotted li::before{content:"";position:absolute;left:2px;top:13px;width:6px;height:6px;border-radius:50%;background:var(--terracotta)}
+.steps li:first-child{border-top:none}
+.steps li::before{
+  content:"0" counter(s);position:absolute;left:0;top:13px;
+  color:var(--ink-soft);font-size:.76rem;font-weight:400;font-family:'Jost';letter-spacing:.06em;
+}
+ul.dotted{list-style:none;margin:8px 0}
+ul.dotted li{position:relative;padding:5px 0 5px 16px;font-size:.88rem;font-weight:300;line-height:1.6}
+ul.dotted li::before{content:"·";position:absolute;left:2px;top:4px;color:var(--ink-soft);font-size:1.1rem}
 
 /* tables */
-.tbl{width:100%;border-collapse:collapse;font-size:.86rem;margin:8px 0;overflow:hidden;border-radius:12px}
-.tbl th{background:var(--ink);color:var(--bg);text-align:left;padding:9px 12px;font-weight:600;font-size:.8rem}
-.tbl td{padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
-.tbl tr:nth-child(even) td{background:rgba(236,228,214,.4)}
-.tbl .yes{color:var(--olive-d);font-weight:600}
-.tbl .no{color:var(--rose);font-weight:600}
+.tbl{width:100%;border-collapse:collapse;font-size:.83rem;margin:10px 0}
+.tbl th{background:transparent;color:var(--ink);text-align:left;padding:10px 12px 10px 0;font-weight:500;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;border-bottom:1px solid var(--ink)}
+.tbl td{padding:11px 12px 11px 0;border-bottom:1px solid var(--line);vertical-align:top;font-weight:300;line-height:1.55}
+.tbl tr:nth-child(even) td{background:transparent}
+.tbl .yes{color:var(--teal);font-weight:400}
+.tbl .no{color:var(--rose);font-weight:400}
 
 /* pills */
-.pill{display:inline-block;font-size:.68rem;font-weight:700;letter-spacing:.04em;padding:2px 9px;border-radius:20px;color:#fff;text-transform:uppercase}
+.pill{display:inline-block;font-size:.62rem;font-weight:500;letter-spacing:.1em;padding:2px 9px;border-radius:100px;color:var(--bg);text-transform:uppercase}
 .pill.alta{background:var(--rose)}
 .pill.media{background:var(--gold)}
 .pill.baja{background:var(--teal)}
@@ -193,168 +197,119 @@ ul.dotted li::before{content:"";position:absolute;left:2px;top:13px;width:6px;he
 }
 .chk li:hover{background:var(--bg2)}
 .chk li .box{
-  flex:0 0 auto;width:21px;height:21px;border-radius:6px;border:2px solid var(--line);
-  margin-top:1px;display:grid;place-items:center;transition:.18s;background:var(--card)
+  flex:0 0 auto;width:19px;height:19px;border-radius:3px;border:1px solid var(--ink-soft);
+  margin-top:3px;display:grid;place-items:center;transition:.18s;background:transparent
 }
-.chk li.done .box{background:var(--olive);border-color:var(--olive)}
-.chk li .box svg{width:12px;height:12px;stroke:#fff;stroke-width:3;fill:none;opacity:0;transition:.18s}
+.chk li.done .box{background:var(--ink);border-color:var(--ink)}
+.chk li .box svg{width:11px;height:11px;stroke:var(--bg);stroke-width:2.5;fill:none;opacity:0;transition:.18s}
 .chk li.done .box svg{opacity:1}
 .chk li.done span.txt{text-decoration:line-through;color:var(--ink-soft)}
 
-.barwrap{height:8px;background:var(--bg2);border-radius:10px;overflow:hidden;margin:6px 0 2px}
-.bar{height:100%;background:linear-gradient(90deg,var(--olive),var(--teal));width:0;transition:.4s;border-radius:10px}
+.barwrap{height:2px;background:var(--line);overflow:hidden;margin:12px 0 2px}
+.bar{height:100%;background:var(--ink);width:0;transition:.4s}
 
 /* daily day cards */
-.daygrid{display:grid;gap:12px}
+.daygrid{display:grid;gap:10px}
 .daycard{
-  background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;
-  box-shadow:var(--shadow);transition:.2s
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;
+  box-shadow:none;transition:.2s
 }
-.daycard.is-today{border-color:var(--terracotta);box-shadow:0 0 0 2px rgba(197,104,63,.18),var(--shadow)}
-.daycard summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:14px;padding:15px 18px}
+.daycard.is-today{border-color:var(--ink)}
+.daycard summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:16px;padding:17px 20px}
 .daycard summary::-webkit-details-marker{display:none}
 .daycard .dnum{
-  flex:0 0 auto;width:42px;height:42px;border-radius:12px;display:grid;place-items:center;
-  font-family:'Fraunces',serif;font-weight:600;font-size:.95rem;background:var(--olive-bg);color:var(--olive-d)
+  flex:0 0 auto;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;
+  font-family:'Jost';font-weight:400;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;
+  background:transparent;color:var(--ink-soft);border:1px solid var(--line)
 }
-.daycard.is-today .dnum{background:var(--terracotta);color:#fff}
-.daycard .dtitle{font-family:'Fraunces',serif;font-weight:600;font-size:1.08rem}
-.daycard .dfocus{font-size:.8rem;color:var(--ink-soft)}
-.daycard .badge-today{margin-left:auto;font-size:.66rem;font-weight:700;letter-spacing:.1em;color:var(--terracotta);text-transform:uppercase}
+.daycard.is-today .dnum{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.daycard .dtitle{font-family:'Playfair Display',serif;font-weight:400;font-size:1.12rem}
+.daycard .dfocus{font-size:.76rem;color:var(--ink-soft);font-weight:300}
+.daycard .badge-today{margin-left:auto;font-size:.6rem;font-weight:400;letter-spacing:.2em;color:var(--ink-soft);text-transform:uppercase}
 .daycard .chev{margin-left:auto;color:var(--ink-soft);transition:.25s}
 .daycard.is-today .chev{margin-left:8px}
 .daycard[open] .chev{transform:rotate(90deg)}
-.daycard .dbody{padding:0 18px 14px}
+.daycard .dbody{padding:0 20px 16px}
 
 /* saturday wheel */
-.satwheel{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:8px}
+.satwheel{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:8px}
 .satchip{
-  background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;cursor:pointer;
-  box-shadow:var(--shadow);transition:.2s;text-align:left;font-family:inherit;position:relative;overflow:hidden
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;cursor:pointer;
+  box-shadow:none;transition:.25s;text-align:left;font-family:inherit;position:relative;overflow:hidden
 }
-.satchip:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg)}
-.satchip.active{border-color:var(--terracotta);background:linear-gradient(180deg,var(--gold-bg),var(--card))}
-.satchip .sn{font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--terracotta);font-weight:700}
-.satchip .st{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:600;margin-top:3px;line-height:1.2}
-.satchip .stime{font-size:.78rem;color:var(--ink-soft);margin-top:6px}
-.satchip .nowtag{position:absolute;top:10px;right:10px;font-size:.6rem;font-weight:700;background:var(--terracotta);color:#fff;padding:2px 7px;border-radius:10px;letter-spacing:.06em}
+.satchip:hover{border-color:var(--ink-soft)}
+.satchip.active{border-color:var(--ink);background:var(--bg2)}
+.satchip .sn{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft);font-weight:400}
+.satchip .st{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:400;margin-top:6px;line-height:1.25}
+.satchip .stime{font-size:.74rem;color:var(--ink-soft);margin-top:8px;font-weight:300}
+.satchip .nowtag{position:absolute;top:12px;right:12px;font-size:.55rem;font-weight:400;background:var(--ink);color:var(--bg);padding:2px 8px;border-radius:100px;letter-spacing:.1em;text-transform:uppercase}
 
 /* timer */
-.timer{display:flex;align-items:center;gap:12px;background:var(--ink);color:var(--bg);border-radius:14px;padding:12px 16px;margin:10px 0}
-.timer .tdisp{font-family:'Fraunces',serif;font-size:1.5rem;font-weight:600;font-variant-numeric:tabular-nums;min-width:78px}
-.timer button{background:rgba(255,255,255,.14);border:none;color:var(--bg);font-family:inherit;font-weight:600;font-size:.8rem;padding:7px 12px;border-radius:9px;cursor:pointer;transition:.15s}
-.timer button:hover{background:rgba(255,255,255,.26)}
+.timer{display:flex;align-items:center;gap:12px;background:var(--ink);color:var(--bg);border-radius:var(--radius);padding:14px 18px;margin:12px 0}
+.timer .tdisp{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:400;font-variant-numeric:tabular-nums;min-width:80px}
+.timer button{background:rgba(250,248,244,.12);border:none;color:var(--bg);font-family:inherit;font-weight:400;font-size:.76rem;padding:7px 13px;border-radius:100px;cursor:pointer;transition:.15s}
+.timer button:hover{background:rgba(250,248,244,.24)}
 .timer .tlabel{font-size:.78rem;opacity:.8;margin-left:auto}
 
 /* supplies grid */
-.supgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:10px 0}
-.supitem{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:13px}
-.supitem .sname{font-weight:600;font-size:.92rem;display:flex;align-items:center;gap:7px}
-.supitem .suse{font-size:.8rem;color:var(--ink-soft);margin-top:3px}
-.supitem .stag{display:inline-block;margin-top:7px;font-size:.66rem;font-weight:700;padding:2px 8px;border-radius:10px}
-.stag.premium{background:var(--gold-bg);color:var(--terracotta-d)}
-.stag.basic{background:var(--olive-bg);color:var(--olive-d)}
+.supgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:12px 0}
+.supitem{background:transparent;border:1px solid var(--line);border-radius:var(--radius);padding:16px}
+.supitem .sname{font-weight:400;font-size:.92rem;display:flex;align-items:center;gap:7px;font-family:'Playfair Display',serif}
+.supitem .suse{font-size:.76rem;color:var(--ink-soft);margin-top:5px;font-weight:300;line-height:1.5}
+.supitem .stag{display:inline-block;margin-top:10px;font-size:.62rem;font-weight:400;padding:2px 9px;border-radius:100px;letter-spacing:.06em;text-transform:uppercase}
+.stag.premium{background:transparent;color:var(--ink);border:1px solid var(--ink)}
+.stag.basic{background:transparent;color:var(--ink-soft);border:1px solid var(--line)}
 
 /* etiquetas en línea: eco / gato */
-.tag{display:inline-flex;align-items:center;gap:4px;font-size:.66rem;font-weight:700;padding:2px 8px;border-radius:20px;letter-spacing:.02em;white-space:nowrap;vertical-align:middle}
-.tag.eco{background:var(--olive-bg);color:var(--olive-d)}
+.tag{display:inline-flex;align-items:center;gap:4px;font-size:.62rem;font-weight:400;padding:2px 9px;border-radius:100px;letter-spacing:.04em;white-space:nowrap;vertical-align:middle}
+.tag.eco{background:var(--olive-bg);color:var(--teal)}
 .tag.catok{background:var(--teal-bg);color:var(--teal)}
 .tag.catno{background:var(--rose-bg);color:var(--rose)}
 .tag.diy{background:var(--gold-bg);color:var(--terracotta-d)}
-.recipe{background:rgba(236,228,214,.5);border:1px dashed var(--line);border-radius:12px;padding:12px 14px;margin:10px 0;font-size:.88rem}
-.recipe b{color:var(--terracotta-d)}
-.zsub{font-weight:600;font-size:.98rem;margin:14px 0 4px;color:var(--ink);display:flex;align-items:center;gap:7px}
-.zsub .zi{font-size:1.05rem}
-.freq{font-size:.8rem;color:var(--ink-soft);font-style:italic;margin:2px 0 8px}
+.recipe{background:var(--bg2);border:none;border-left:2px solid var(--gold);border-radius:var(--radius);padding:14px 16px;margin:12px 0;font-size:.85rem;font-weight:300;line-height:1.6}
+.recipe b{color:var(--terracotta-d);font-weight:500}
+.zsub{font-weight:500;font-size:.95rem;margin:18px 0 6px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.zsub .zi{font-size:1rem}
+.freq{font-size:.76rem;color:var(--ink-soft);font-style:italic;margin:2px 0 8px;font-weight:300}
 
 /* guías por zona con niveles */
-.zone{border:1px solid var(--line);border-radius:16px;overflow:hidden;margin-bottom:14px;background:var(--card);box-shadow:var(--shadow)}
-.zone>summary{list-style:none;cursor:pointer;padding:16px 18px;display:flex;align-items:center;gap:13px;transition:.15s}
+.zone{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;margin-bottom:10px;background:var(--card);box-shadow:none;transition:.2s}
+.zone:hover{border-color:var(--ink-soft)}
+.zone[open]{border-color:var(--ink)}
+.zone>summary{list-style:none;cursor:pointer;padding:18px 20px;display:flex;align-items:center;gap:15px;transition:.15s}
 .zone>summary::-webkit-details-marker{display:none}
-.zone>summary:hover{background:var(--bg2)}
-.zone .zhead-ic{flex:0 0 auto;width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font-size:1.4rem}
+.zone .zhead-ic{flex:0 0 auto;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font-size:1.15rem;background:var(--bg2)!important;border:1px solid var(--line)}
 .zone .zhead-tx{flex:1;min-width:0}
-.zone .zhead-tx .zn{font-family:'Fraunces',serif;font-weight:600;font-size:1.12rem;line-height:1.2}
-.zone .zhead-tx .zs{font-size:.78rem;color:var(--ink-soft);margin-top:2px}
+.zone .zhead-tx .zn{font-family:'Playfair Display',serif;font-weight:400;font-size:1.15rem;line-height:1.25;display:block}
+.zone .zhead-tx .zs{font-size:.74rem;color:var(--ink-soft);margin-top:3px;font-weight:300;display:block;line-height:1.45}
 .zone>summary .chev{margin-left:auto;color:var(--ink-soft);transition:.25s;flex:0 0 auto}
 .zone[open]>summary .chev{transform:rotate(90deg)}
-.zbody{padding:0 16px 16px;border-top:1px solid var(--line)}
-.levels{display:flex;gap:6px;margin:14px 0 4px;background:var(--bg2);padding:4px;border-radius:12px}
-.lvl-btn{flex:1;border:none;background:transparent;font-family:inherit;font-size:.8rem;font-weight:600;color:var(--ink-soft);padding:8px 4px;border-radius:9px;cursor:pointer;transition:.15s;display:flex;flex-direction:column;align-items:center;gap:1px;line-height:1.1}
-.lvl-btn .lt{font-size:.66rem;font-weight:500;opacity:.8}
-.lvl-btn.active{background:var(--card);color:var(--ink);box-shadow:var(--shadow)}
-.lvl-btn[data-l="rapido"].active{color:var(--teal)}
-.lvl-btn[data-l="normal"].active{color:var(--blue)}
-.lvl-btn[data-l="profundo"].active{color:var(--terracotta-d)}
+.zbody{padding:0 20px 20px;border-top:1px solid var(--line)}
+.levels{display:flex;gap:0;margin:18px 0 4px;border-bottom:1px solid var(--line)}
+.lvl-btn{flex:1;border:none;background:transparent;font-family:inherit;font-size:.78rem;font-weight:400;color:var(--ink-soft);padding:11px 4px;cursor:pointer;transition:.2s;display:flex;flex-direction:column;align-items:center;gap:2px;line-height:1.15;border-bottom:2px solid transparent;margin-bottom:-1px}
+.lvl-btn .lt{font-size:.62rem;font-weight:300;opacity:.75;letter-spacing:.04em}
+.lvl-btn:hover{color:var(--ink)}
+.lvl-btn.active{color:var(--ink);border-bottom-color:var(--ink)}
 .lvl-pane{display:none;animation:fade .3s ease}
 .lvl-pane.active{display:block}
-.lvl-meta{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 8px;align-items:center}
-.lvl-time{font-size:.78rem;font-weight:600;color:var(--ink);background:var(--gold-bg);padding:3px 10px;border-radius:20px}
-.prod-chips{display:flex;flex-wrap:wrap;gap:5px;margin:8px 0}
-.prod-chip{font-size:.7rem;background:var(--olive-bg);color:var(--olive-d);padding:3px 9px;border-radius:8px;font-weight:500}
-.zone-tip{background:var(--teal-bg);border-left:4px solid var(--teal);border-radius:10px;padding:11px 13px;margin-top:12px;font-size:.85rem}
-.zone-tip b{color:var(--teal)}
-.zone-when{background:var(--blue-bg);border-radius:10px;padding:9px 12px;margin-top:12px;font-size:.82rem;line-height:1.4}
-
-/* calendario mensual */
-.cal-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}
-.cal-title{font-family:'Fraunces',serif;font-weight:600;font-size:1.2rem;text-transform:capitalize}
-.cal-nav{display:flex;gap:6px}
-.cal-nav button{width:34px;height:34px;border-radius:10px;border:1px solid var(--line);background:var(--card);cursor:pointer;font-size:1rem;color:var(--ink);transition:.15s}
-.cal-nav button:hover{background:var(--bg2)}
-.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
-.cal-dow{text-align:center;font-size:.66rem;font-weight:700;letter-spacing:.04em;color:var(--ink-soft);text-transform:uppercase;padding:4px 0}
-.cal-cell{aspect-ratio:1/1.15;border:1px solid var(--line);border-radius:10px;background:var(--card);padding:5px 4px;display:flex;flex-direction:column;overflow:hidden;cursor:pointer;transition:.15s;min-height:0}
-.cal-cell.empty{border:none;background:transparent;cursor:default}
-.cal-cell:not(.empty):hover{box-shadow:var(--shadow);transform:translateY(-1px)}
-.cal-cell .cd{font-size:.74rem;font-weight:700;color:var(--ink);line-height:1}
-.cal-cell .cz{font-size:.56rem;line-height:1.12;color:var(--ink-soft);margin-top:3px;overflow:hidden;flex:1}
-.cal-cell .clvl{margin-top:auto;height:4px;border-radius:3px;width:100%}
-.cal-cell.today{border-color:var(--terracotta);box-shadow:0 0 0 2px rgba(197,104,63,.2)}
-.cal-cell.today .cd{color:var(--terracotta-d)}
-.cal-cell.sat{background:linear-gradient(180deg,var(--gold-bg),var(--card))}
-.cal-cell .ce{font-size:.78rem;text-align:center;margin-top:1px}
-.lv-rapido{background:var(--teal)}
-.lv-normal{background:var(--blue)}
-.lv-profundo{background:var(--terracotta)}
-.cal-legend{display:flex;flex-wrap:wrap;gap:12px;margin:14px 0 4px;font-size:.78rem}
-.cal-legend span{display:inline-flex;align-items:center;gap:5px}
-.cal-legend .sw{width:14px;height:8px;border-radius:3px;display:inline-block}
-.cal-detail{margin-top:14px}
-@media(max-width:560px){
-  .cal-cell .cz{font-size:.5rem}
-  .cal-cell .cd{font-size:.66rem}
-}
+.lvl-meta{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 8px;align-items:center}
+.lvl-time{font-size:.7rem;font-weight:400;color:var(--ink-soft);letter-spacing:.1em;text-transform:uppercase}
+.prod-chips{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 4px}
+.prod-chip{font-size:.68rem;background:transparent;color:var(--ink-soft);padding:3px 10px;border-radius:100px;font-weight:300;border:1px solid var(--line)}
+.zone-tip{background:var(--teal-bg);border-left:2px solid var(--teal);border-radius:var(--radius);padding:14px 16px;margin-top:16px;font-size:.84rem;font-weight:300;line-height:1.6}
+.zone-tip b{color:var(--teal);font-weight:500}
+.zone-when{background:var(--bg2);border-radius:var(--radius);padding:11px 14px;margin-top:16px;font-size:.8rem;line-height:1.5;font-weight:300}
 
 /* reset btn */
-.reset{display:block;margin:10px auto 0;background:transparent;border:1px solid var(--line);color:var(--ink-soft);font-family:inherit;font-size:.78rem;padding:7px 14px;border-radius:9px;cursor:pointer;transition:.15s}
-.reset:hover{border-color:var(--rose);color:var(--rose)}
+.reset{display:block;margin:14px auto 0;background:transparent;border:1px solid var(--line);color:var(--ink-soft);font-family:inherit;font-size:.74rem;font-weight:300;padding:8px 18px;border-radius:100px;cursor:pointer;transition:.2s}
+.reset:hover{border-color:var(--ink);color:var(--ink)}
 
-footer{text-align:center;color:var(--ink-soft);font-size:.78rem;padding:24px 18px 8px}
-
-/* bottom dock (mobile quick) */
-.dock{
-  position:fixed;bottom:14px;left:50%;transform:translateX(-50%);
-  background:var(--ink);border-radius:30px;padding:6px;display:flex;gap:1px;
-  box-shadow:var(--shadow-lg);z-index:60;max-width:calc(100vw - 16px)
-}
-.dock button{
-  background:transparent;border:none;color:rgba(244,239,230,.6);font-family:inherit;
-  font-size:.68rem;font-weight:600;padding:8px 11px;border-radius:22px;cursor:pointer;
-  display:flex;flex-direction:column;align-items:center;gap:2px;transition:.15s;white-space:nowrap
-}
-.dock button .di{font-size:1.02rem}
-.dock button.active,.dock button:hover{color:var(--bg);background:rgba(255,255,255,.12)}
+footer{text-align:center;color:var(--ink-soft);font-size:.72rem;padding:34px 18px 8px;font-weight:300;letter-spacing:.02em}
 
 @media(max-width:560px){
   .satwheel{grid-template-columns:1fr 1fr}
   .today-card{flex-direction:column;text-align:center}
   .card{padding:16px 16px}
-  .dock button{padding:7px 8px;font-size:.62rem}
-  .dock button .di{font-size:.95rem}
-}
-@media(max-width:380px){
-  .dock button{padding:6px 6px;font-size:.58rem}
 }
 </style>
 </head>
@@ -368,11 +323,11 @@ footer{text-align:center;color:var(--ink-soft);font-size:.78rem;padding:24px 18p
   <div class="today-card" id="todayCard">
     <div class="ring">
       <svg width="62" height="62" viewBox="0 0 62 62">
-        <circle cx="31" cy="31" r="26" fill="none" stroke="#e2d8c8" stroke-width="7"/>
-        <circle id="todayRing" cx="31" cy="31" r="26" fill="none" stroke="#5f7355" stroke-width="7"
+        <circle cx="31" cy="31" r="26" fill="none" stroke="#ded8cc" stroke-width="5"/>
+        <circle id="todayRing" cx="31" cy="31" r="26" fill="none" stroke="#3c332a" stroke-width="5"
           stroke-linecap="round" stroke-dasharray="163.4" stroke-dashoffset="163.4"
           transform="rotate(-90 31 31)" style="transition:.5s"/>
-        <text id="todayPct" x="31" y="36" text-anchor="middle" font-family="Fraunces" font-size="15" font-weight="600" fill="#2b2620">0%</text>
+        <text id="todayPct" x="31" y="36" text-anchor="middle" font-family="Playfair Display" font-size="15" font-weight="500" fill="#211f1c">0%</text>
       </svg>
     </div>
     <div class="info">
@@ -388,11 +343,9 @@ footer{text-align:center;color:var(--ink-soft);font-size:.78rem;padding:24px 18p
   <div class="inner" id="tabRow">
     <button class="tab active" data-p="inicio"><span class="ic">🏡</span>Inicio</button>
     <button class="tab" data-p="diaria"><span class="ic">⏱️</span>Día a día</button>
-    <button class="tab" data-p="mes"><span class="ic">📅</span>Mes</button>
     <button class="tab" data-p="sabados"><span class="ic">🧽</span>Sábados</button>
     <button class="tab" data-p="zonas"><span class="ic">📍</span>Por zonas</button>
     <button class="tab" data-p="productos"><span class="ic">🧴</span>Productos</button>
-    <button class="tab" data-p="bogota"><span class="ic">📍</span>Bogotá</button>
     <button class="tab" data-p="orden"><span class="ic">📦</span>Orden</button>
   </div>
 </nav>
@@ -402,7 +355,7 @@ footer{text-align:center;color:var(--ink-soft);font-size:.78rem;padding:24px 18p
 <!-- ============ INICIO ============ -->
 <section class="panel active" id="inicio">
   <div class="section-head">
-    <h2 class="serif">El sistema, en una idea</h2>
+    <h2 class="serif">El sistema, <em>en una idea</em></h2>
     <p>La constancia vence al esfuerzo. No se trata de jornadas heroicas, sino de pequeños gestos diarios que evitan que la suciedad se acumule.</p>
   </div>
 
@@ -447,7 +400,7 @@ footer{text-align:center;color:var(--ink-soft);font-size:.78rem;padding:24px 18p
 <!-- ============ DÍA A DÍA ============ -->
 <section class="panel" id="diaria">
   <div class="section-head">
-    <h2 class="serif">Rutina diaria de 20 minutos</h2>
+    <h2 class="serif">Rutina <em>diaria</em></h2>
     <p>Cada día = los 5 innegociables (≈7 min) + la limpieza semanal de la zona que toca ese día. Así cada zona recibe su turno una vez por semana sin que ningún día sea pesado.</p>
   </div>
 
@@ -488,47 +441,10 @@ footer{text-align:center;color:var(--ink-soft);font-size:.78rem;padding:24px 18p
   <button class="reset" onclick="resetDay()">↺ Reiniciar marcas del día a día</button>
 </section>
 
-<!-- ============ MES ============ -->
-<section class="panel" id="mes">
-  <div class="section-head">
-    <h2 class="serif">Cronograma mensual</h2>
-    <p>Todo el mes de un vistazo: la tarea diaria de cada día y, en los sábados, la zona profunda que toca. Solo para consultar.</p>
-  </div>
-
-  <div class="card">
-    <div class="cal-head">
-      <span class="cal-title" id="calTitle">—</span>
-      <div class="cal-nav">
-        <button onclick="calMove(-1)" aria-label="Mes anterior">‹</button>
-        <button onclick="calToday()" aria-label="Hoy" title="Hoy">•</button>
-        <button onclick="calMove(1)" aria-label="Mes siguiente">›</button>
-      </div>
-    </div>
-    <div class="cal-grid" id="calGrid"></div>
-    <div class="cal-legend">
-      <span><span class="sw lv-rapido"></span> Rápido (diario)</span>
-      <span><span class="sw lv-normal"></span> Normal (semanal)</span>
-      <span><span class="sw lv-profundo"></span> Profundo (sábado)</span>
-    </div>
-  </div>
-
-  <div class="cal-detail" id="calDetail"></div>
-
-  <div class="callout note">
-    <span class="ct">📅 Cómo leer el mes</span>
-    <ul>
-      <li>Los <b>5 innegociables</b> van todos los días (no se dibujan en el calendario para no saturar).</li>
-      <li>De lunes a viernes la barra es <b style="color:var(--blue)">azul</b>: es la limpieza <b>semanal</b> de la zona que toca ese día.</li>
-      <li>Los <b style="color:var(--terracotta-d)">sábados</b> destacan en dorado con la <b>zona profunda</b> que rota cada semana del mes.</li>
-      <li>Toca cualquier día para ver el detalle abajo.</li>
-    </ul>
-  </div>
-</section>
-
 <!-- ============ SÁBADOS ============ -->
 <section class="panel" id="sabados">
   <div class="section-head">
-    <h2 class="serif">Sábados de limpieza profunda</h2>
+    <h2 class="serif">Sábados de <em>limpieza profunda</em></h2>
     <p>Cada sábado, una zona distinta. En 4 sábados cubres todo el apartamento — y nunca te agotas. Elige el sábado de la semana:</p>
   </div>
 
@@ -550,7 +466,7 @@ footer{text-align:center;color:var(--ink-soft);font-size:.78rem;padding:24px 18p
 <!-- ============ ZONAS ============ -->
 <section class="panel" id="zonas">
   <div class="section-head">
-    <h2 class="serif">Guía por zonas</h2>
+    <h2 class="serif">Guía por <em>zonas</em></h2>
     <p>Tu referencia técnica a fondo. Todo con productos eficaces, no tóxicos y ecológicos. Las etiquetas te dicen de un vistazo qué es seguro para tu gato.</p>
   </div>
 
@@ -584,7 +500,7 @@ footer{text-align:center;color:var(--ink-soft);font-size:.78rem;padding:24px 18p
 <!-- ============ PRODUCTOS ============ -->
 <section class="panel" id="productos">
   <div class="section-head">
-    <h2 class="serif">Productos: eficaces, no tóxicos y eco</h2>
+    <h2 class="serif">Productos <em>eficaces y no tóxicos</em></h2>
     <p>Un arsenal pequeño que limpia de verdad sin químicos agresivos, biodegradable y seguro para tu gato. Mezcla de caseros + marcas eco certificadas.</p>
   </div>
 
@@ -743,75 +659,10 @@ footer{text-align:center;color:var(--ink-soft);font-size:.78rem;padding:24px 18p
 </section>
 
 
-<!-- ============ BOGOTÁ ============ -->
-<section class="panel" id="bogota">
-  <div class="section-head">
-    <h2 class="serif">Dónde comprar en Bogotá</h2>
-    <p>Casi todo esto son insumos para hacer tus propios limpiadores: sale mucho más barato en tiendas de químicos que las versiones de marca. Aquí la guía local.</p>
-  </div>
-
-  <div class="callout gold">
-    <span class="ct">💡 El truco que ahorra plata</span>
-    El "jabón de Castilla", el percarbonato y el ácido cítrico son caros como producto de marca, pero baratos como <b>materia prima</b>. Búscalos en tiendas de insumos químicos y para fabricación de detergentes, no en el supermercado.
-  </div>
-
-  <div class="card">
-    <h3>🧪 Insumos químicos (lo más económico)</h3>
-    <div class="meta">Percarbonato, bicarbonato, ácido cítrico, peróxido, soda, etc.</div>
-    <ul class="dotted">
-      <li><b>Zona Ricaurte / Av. Caracas / Paloquemao:</b> es el sector con más tiendas de químicos y materias primas para aseo en Bogotá. Pregunta por "oxígeno activo" (percarbonato), ácido cítrico y bicarbonato.</li>
-      <li><b>Químicos Campota y Cía:</b> manejan ácido cítrico, bicarbonato de sodio y peróxido de hidrógeno, entre muchos otros.</li>
-      <li><b>Tiendas de "materias primas para cosmética y aseo":</b> venden todo para fabricar tus limpiadores, en cantidades pequeñas o por kilo.</li>
-    </ul>
-  </div>
-
-  <div class="card">
-    <h3>🛒 Por producto, dónde es más fácil</h3>
-    <table class="tbl"><tr><th>Producto</th><th>Dónde conseguirlo</th></tr>
-      <tr><td>Percarbonato ("oxígeno activo")</td><td>Insumos químicos / fabricación de detergentes; bolsas de 1–2 kg en MercadoLibre con envío</td></tr>
-      <tr><td>Bicarbonato de sodio</td><td>Supermercados (repostería), droguerías, insumos químicos (más barato por kilo)</td></tr>
-      <tr><td>Ácido cítrico</td><td>Tiendas de repostería/insumos, químicos; MercadoLibre</td></tr>
-      <tr><td>Peróxido de hidrógeno (agua oxigenada)</td><td>Cualquier droguería/farmacia (al 3%)</td></tr>
-      <tr><td>Jabón neutro de losa / coco</td><td>Supermercados (Éxito, Jumbo, Olímpica), D1, Ara, tiendas de barrio</td></tr>
-      <tr><td>Detergente sin fragancia</td><td>Supermercados — busca "para bebé", "hipoalergénico" o sin perfume</td></tr>
-      <tr><td>Microfibra, mopa, escobilla</td><td>Supermercados, Homecenter, tiendas de aseo</td></tr>
-      <tr><td>Carbón activado / gel de sílice</td><td>Acuarios/mascotas (carbón), MercadoLibre (sílice)</td></tr>
-    </table>
-  </div>
-
-  <div class="card">
-    <h3>🌐 Tiendas online con envío en Bogotá</h3>
-    <ul class="dotted">
-      <li><b>MercadoLibre Colombia</b> — percarbonato, ácido cítrico, bicarbonato, microfibra; filtra por "Bogotá D.C." para envío rápido.</li>
-      <li><b>Tiendas eco / zero waste locales</b> — venden percarbonato y jabones naturales a granel (busca "tienda a granel Bogotá" o "zero waste Bogotá").</li>
-      <li><b>Distribuidores de químicos</b> — venden percarbonato como "oxígeno activo" por kilo o bulto, con envío a todo el país.</li>
-    </ul>
-  </div>
-
-  <div class="callout tip">
-    <span class="ct">🛍️ Lista de mercado para empezar</span>
-    <ul>
-      <li>1 kg de bicarbonato</li>
-      <li>1 kg de percarbonato ("oxígeno activo")</li>
-      <li>250 g de ácido cítrico</li>
-      <li>1 frasco de agua oxigenada al 3% (droguería) + 1 atomizador opaco</li>
-      <li>1 jabón neutro de losa o de coco</li>
-      <li>1 detergente sin fragancia</li>
-      <li>3–4 paños de microfibra de colores distintos</li>
-    </ul>
-    Con eso cubres prácticamente todo el manual por muy poco dinero.
-  </div>
-
-  <div class="callout warn">
-    <span class="ct">🐱 Recordatorio por tu gato</span>
-    Al comprar, evita todo lo que diga aroma a <b>cítricos, pino, eucalipto, lavanda o "aceites esenciales"</b>, y el detergente perfumado. Elige siempre las versiones <b>sin fragancia</b>.
-  </div>
-</section>
-
 <!-- ============ ORDEN ============ -->
 <section class="panel" id="orden">
   <div class="section-head">
-    <h2 class="serif">Sistema de organización</h2>
+    <h2 class="serif">Sistema de <em>organización</em></h2>
     <p>La limpieza quita la suciedad; la organización quita el caos. Sin orden, limpiar se vuelve imposible.</p>
   </div>
 
@@ -871,14 +722,6 @@ footer{text-align:center;color:var(--ink-soft);font-size:.78rem;padding:24px 18p
 
 <footer>Manual del Hogar · tu sistema personal de limpieza y orden · el progreso se guarda en este dispositivo</footer>
 
-<div class="dock" id="dock">
-  <button data-p="inicio" class="active"><span class="di">🏡</span>Inicio</button>
-  <button data-p="diaria"><span class="di">⏱️</span>Hoy</button>
-  <button data-p="mes"><span class="di">📅</span>Mes</button>
-  <button data-p="sabados"><span class="di">🧽</span>Sábado</button>
-  <button data-p="zonas"><span class="di">📍</span>Zonas</button>
-  <button data-p="productos"><span class="di">🧴</span>Productos</button>
-</div>
 <script>
 /* ---------- almacenamiento simple ---------- */
 const store = {
@@ -905,10 +748,9 @@ const SATS = [
 function go(id){
   document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active',p.id===id));
   document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.dataset.p===id));
-  document.querySelectorAll('.dock button').forEach(b=>b.classList.toggle('active',b.dataset.p===id));
   window.scrollTo({top:0,behavior:'smooth'});
 }
-document.querySelectorAll('.tab,.dock button').forEach(b=>b.addEventListener('click',()=>go(b.dataset.p)));
+document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>go(b.dataset.p)));
 
 /* ---------- checklists con persistencia ---------- */
 function bindList(ul){
@@ -1116,82 +958,6 @@ function renderZonas(){
   });
 }
 
-/* ---------- calendario mensual ---------- */
-const MESES=['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
-const DOW=['Lun','Mar','Mié','Jue','Vie','Sáb','Dom'];
-let calRef=new Date();
-function calMove(d){ calRef=new Date(calRef.getFullYear(),calRef.getMonth()+d,1); renderCal(); }
-function calToday(){ calRef=new Date(); renderCal(); selectCalDay(new Date()); }
-// índice de SATS coherente con la pestaña Sábados (bloque de 7 días del mes)
-function satIndexForDate(date){
-  return Math.floor((date.getDate()-1)/7)%SATS.length;
-}
-function dayInfoFor(date){
-  const idx=(date.getDay()+6)%7; // 0=Lunes
-  const day=DAYS[idx];
-  if(date.getDay()===6){ // sábado
-    const si=satIndexForDate(date);
-    return {idx, day, sat:SATS[si], satNum:si+1};
-  }
-  return {idx, day, sat:null};
-}
-function renderCal(){
-  const y=calRef.getFullYear(), m=calRef.getMonth();
-  document.getElementById('calTitle').textContent=MESES[m]+' '+y;
-  const grid=document.getElementById('calGrid');
-  let html=DOW.map(d=>`<div class="cal-dow">${d}</div>`).join('');
-  const first=new Date(y,m,1);
-  const lead=(first.getDay()+6)%7; // cuántas celdas vacías antes del día 1
-  const daysInMonth=new Date(y,m+1,0).getDate();
-  for(let i=0;i<lead;i++) html+=`<div class="cal-cell empty"></div>`;
-  const now=new Date();
-  for(let d=1; d<=daysInMonth; d++){
-    const dt=new Date(y,m,d);
-    const info=dayInfoFor(dt);
-    const isToday=dt.toDateString()===now.toDateString();
-    const isSat=dt.getDay()===6;
-    const isSun=dt.getDay()===0;
-    let lvl = isSat?'lv-profundo':(isSun?'lv-rapido':'lv-normal');
-    let label = isSat ? (info.sat? info.sat.t : 'Profundo') : info.day.focus;
-    let emoji = isSat?'🧽':'';
-    html+=`<div class="cal-cell${isToday?' today':''}${isSat?' sat':''}" onclick="selectCalDay(new Date(${y},${m},${d}))">
-      <span class="cd">${d}</span>
-      ${emoji?`<span class="ce">${emoji}</span>`:''}
-      <span class="cz">${label}</span>
-      <span class="clvl ${lvl}"></span>
-    </div>`;
-  }
-  grid.innerHTML=html;
-}
-function selectCalDay(date){
-  const info=dayInfoFor(date);
-  const det=document.getElementById('calDetail');
-  const dd=date.getDate(), mm=MESES[date.getMonth()];
-  const isSat=date.getDay()===6;
-  let body='';
-  if(isSat && info.sat){
-    const s=info.sat;
-    body=`<div class="card" style="background:linear-gradient(180deg,var(--gold-bg),var(--card))">
-      <h3>🧽 ${dd} de ${mm} · ${info.day.n}</h3>
-      <div class="meta">${s.n} — limpieza profunda · ⏱ ${s.time}</div>
-      <p style="font-size:.86rem;margin:6px 0 2px"><b>Zona:</b> ${s.t}</p>
-      <p style="font-size:.84rem;color:var(--ink-soft);margin-bottom:6px">Además, mantén solo los 5 innegociables.</p>
-      <p style="font-size:.82rem"><b>Primeros pasos:</b> ${s.steps.slice(0,3).join(' · ')}…</p>
-      <button class="mini-btn" style="margin-top:10px" onclick="go('sabados')">Ver checklist completo →</button>
-    </div>`;
-  } else {
-    const items=info.day.items.map(it=>`<li data-id="x"><span class="box" style="border-color:var(--line)"></span><span class="txt">${it.t} <span class="pill ${it.p}">${it.p}</span> <i style="color:var(--ink-soft);font-size:.82em">· ${it.m}</i></span></li>`).join('');
-    body=`<div class="card">
-      <h3>📌 ${dd} de ${mm} · ${info.day.n}</h3>
-      <div class="meta">${info.day.focus}</div>
-      <ul class="chk" style="pointer-events:none">${items}</ul>
-      <button class="mini-btn" style="margin-top:6px" onclick="go('diaria')">Ir al día a día →</button>
-    </div>`;
-  }
-  det.innerHTML=body;
-  det.scrollIntoView({behavior:'smooth',block:'nearest'});
-}
-
 /* ---------- render días ---------- */
 const todayIdx=(new Date().getDay()+6)%7; // 0=Lunes
 function renderDays(){
@@ -1339,7 +1105,6 @@ document.querySelectorAll('#diaria .chk[data-list="innegociables"]').forEach(bin
 document.querySelectorAll('#productos .chk[data-list^="shop_"]').forEach(bindList);
 renderDays();
 renderZonas();
-renderCal();
 renderSatWheel();
 renderSatDetail();
 refreshToday();
